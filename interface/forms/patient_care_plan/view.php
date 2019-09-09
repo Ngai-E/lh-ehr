@@ -28,19 +28,18 @@ $returnurl = 'encounter_top.php';
 	<body>
 		<?php
 			include_once("$srcdir/api.inc");
-			$res2 = sqlStatement("SELECT count(*) AS numOfRows FROM `form_patient_care_plan` WHERE id =?", array($_GET["id"]));
-    		$getMaxid = sqlFetchArray($res2);
-    		$sql = "SELECT * FROM `form_patient_care_plan` WHERE id=? AND pid = ? AND encounter = ?";
-			$obj = sqlStatement($sql, array($_GET["id"],$_SESSION["pid"], $_SESSION["encounter"]));
-
-			if ($getMaxid['numOfRows']) {
-				$count = $getMaxid['numOfRows'] + 1 ;
-				$html = "<input type=\"hidden\" id=\"num\" value=" . $count . " />";
+			$res = sqlStatement("SELECT COUNT(*) as numberOfIssues FROM `form_patient_care_plan` WHERE id=?", array($_GET["id"]));
+    		$numberOfIssues = sqlFetchArray($res);
+			$obj = formFetch("form_patient_care_plan", $_GET["id"]);
+			if($numberOfIssues["numberOfIssues"]) {
+				$html = "<input type=\"hidden\" id=\"num\" value=" . $numberOfIssues . " />";
 				echo $html;
-		        
-		    } else {
-		        echo "<input type=\"hidden\" id=\"num\" value=\"1\" />";
-    		}
+			} else {
+				$html = "<input type=\"hidden\" id=\"num\" value=\"1\" />";
+				echo $html;
+			}
+			
+
 		?>
 		<form class="form-horizontal" method=post action="<?php echo $rootdir;?>/forms/patient_care_plan/save.php?mode=update&id=<?php echo attr($_GET["id"]);?>" name="my_form" onsubmit="return top.restoreSession()">
 			<div class="row">
