@@ -30,7 +30,8 @@ $returnurl = 'encounter_top.php';
 			include_once("$srcdir/api.inc");
 			$res = sqlStatement("SELECT COUNT(*) as numberOfIssues FROM `form_patient_care_plan` WHERE id=?", array($_GET["id"]));
     		$numberOfIssues = sqlFetchArray($res);
-			$obj = formFetch("form_patient_care_plan", $_GET["id"]);
+			$sql = "SELECT * FROM `form_patient_care_plan` WHERE id=? AND pid = ? AND encounter = ?";
+    		$obj = sqlStatement($sql, array($_GET["id"],$_SESSION["pid"], $_SESSION["encounter"]));
 			if($numberOfIssues["numberOfIssues"]) {
 				$html = "<input type=\"hidden\" id=\"num\" value=" . $numberOfIssues . " />";
 				echo $html;
@@ -41,7 +42,7 @@ $returnurl = 'encounter_top.php';
 			
 
 		?>
-		<form class="form-horizontal" method=post action="<?php echo $rootdir;?>/forms/patient_care_plan/save.php?mode=update&id=<?php echo attr($_GET["id"]);?>" name="my_form" onsubmit="return top.restoreSession()">
+		<form class="form-horizontal" method=post action="<?php echo $rootdir;?>/forms/patient_care_plan/save.php?mode=update&id=<?php echo attr($_GET["id"]);?>" name="my_form" onsubmit="beforeSubmit(); return top.restoreSession()">
 			<div class="row">
 					<!-- Save/Cancel buttons -->
 				<input type="submit" id="save" class='btn btn-success' value="<?php echo xla('Save'); ?>"> &nbsp;
@@ -77,7 +78,7 @@ $returnurl = 'encounter_top.php';
 						  		<a href="#"><span style="color: red" onclick="deactivateIssue(<?php echo text($value['issue'] + 1); ?>)" class="glyphicon glyphicon-ban-circle" title="Deactivate Issue"></span> </a> 
 						  	</td>
 						  	<td><input type="text" name="issue[]" placeholder="key issue" value="<?php echo text($value['Key_issue']); ?>"></td>
-						  	<input type="hidden" class="status_<?php echo text($value['status']); ?>" name="status[]" value="<?php echo text($value['status']); ?>">
+						  	<input type="hidden" class="status_<?php echo text($value['issue'] + 1); ?>" name="status[]" value="<?php echo text($value['status']); ?>">
 						  	<input type="hidden"  name="count[]" value="<?php echo text($value['issue'] + 1); ?>">
 						  	<td>
 						      <table>
@@ -98,10 +99,10 @@ $returnurl = 'encounter_top.php';
 				                            $progress_ =  json_decode($value['Progress']);
 				                            for($i = 0; $i < count($intervention); $i++) {
 				                         ?>		
-				                         		<td><textarea name="intervention_<?php echo $i; ?>[]"><?php echo text($intervention[$i]);?></textarea></td>
-										        <td><textarea name="outcome_<?php echo $i; ?>[]"><?php echo text($outcome[$i]);?></textarea></td>
-										        <td><textarea name="goal_<?php echo $i; ?>[]"><?php echo text($goal[$i]);?></textarea></td>
-										        <td><textarea name="progress_<?php echo $i; ?>[]"><?php echo text($progress[$i]);?></textarea></td> 
+				                         		<td><textarea name="intervention_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($intervention[$i]);?></textarea></td>
+										        <td><textarea name="outcome_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($outcome[$i]);?></textarea></td>
+										        <td><textarea name="goal_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($goal[$i]);?></textarea></td>
+										        <td><textarea name="progress_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($progress[$i]);?></textarea></td> 
 										         </tr>
 										<?php
 										}		                            
@@ -188,6 +189,8 @@ $returnurl = 'encounter_top.php';
 		}
 
 		function beforeSubmit() {
+			$(`textarea[name='intervention_1[]']`)
+              					.map(function(){ console.log($(this).val());return $(this);});
 			var intervention = new Array();
 			var outcome = new Array();
 			var goal = new Array();
@@ -216,6 +219,12 @@ $returnurl = 'encounter_top.php';
 			objectGoal = {"goal": goal};
 			objectProgress = {"progress": progress};
 			console.log(JSON.stringify(objectIntervention));
+			console.log(JSON.stringify(objectOutcome));
+			console.log(JSON.stringify(objectGoal));
+			console.log(JSON.stringify(objectProgress));
+
+
+
 
 			$('textarea[name="Interventions"]').val(JSON.stringify(objectIntervention));
             $('textarea[name="Outcome"]').val(JSON.stringify(objectOutcome));

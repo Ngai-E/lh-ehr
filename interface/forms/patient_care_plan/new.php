@@ -183,6 +183,9 @@ $returnurl = 'encounter_top.php';
 			objectGoal = {"goal": goal};
 			objectProgress = {"progress": progress};
 			console.log(JSON.stringify(objectIntervention));
+			console.log(JSON.stringify(objectOutcome));
+			console.log(JSON.stringify(objectGoal));
+			console.log(JSON.stringify(objectProgress));
 
 			$('textarea[name="Interventions"]').val(JSON.stringify(objectIntervention));
             $('textarea[name="Outcome"]').val(JSON.stringify(objectOutcome));
