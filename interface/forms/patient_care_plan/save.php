@@ -48,8 +48,8 @@ if (!empty($count)) {
       $Interventions_val = $Interventions[$key] ? $Interventions[$key] : ' ';
       $Outcome_val = $Outcome[$key] ? $Outcome[$key] : ' ';
       $Goal_val = $Goal[$key] ? $Goal[$key] : ' ';
-      $status_val = $status[$key];
       $Progress_val = $Progress[$key] ? $Progress[$key] : ' ';
+      $status_val = $status[$key];
 
        if( strcmp($issue_val, '') == 0 && strcmp($Interventions_val, '[""]') == 0 && strcmp($Outcome_val, '[""]') == 0 && strcmp($Goal_val, '[""]') == 0 && strcmp($Progress_val, '[""]') == 0) {
         continue;

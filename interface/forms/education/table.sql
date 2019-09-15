@@ -13,5 +13,6 @@ CREATE TABLE IF NOT EXISTS `form_education` (
   `response` text, 
   `method` text,
   `interventions` text,
-  `remark` text
+  `remark` text,
+  `learners_status` text,
 ) ENGINE=InnoDB;

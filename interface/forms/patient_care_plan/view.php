@@ -33,7 +33,7 @@ $returnurl = 'encounter_top.php';
 			$sql = "SELECT * FROM `form_patient_care_plan` WHERE id=? AND pid = ? AND encounter = ?";
     		$obj = sqlStatement($sql, array($_GET["id"],$_SESSION["pid"], $_SESSION["encounter"]));
 			if($numberOfIssues["numberOfIssues"]) {
-				$html = "<input type=\"hidden\" id=\"num\" value=" . $numberOfIssues . " />";
+				$html = "<input type=\"hidden\" id=\"num\" value=" . $numberOfIssues["numberOfIssues"] . " />";
 				echo $html;
 			} else {
 				$html = "<input type=\"hidden\" id=\"num\" value=\"1\" />";
@@ -96,14 +96,14 @@ $returnurl = 'encounter_top.php';
 				                            $intervention =  json_decode($value['Interventions']);
 				                            $outcome =  json_decode($value['Outcome']);
 				                            $goal =  json_decode($value['Goal']);
-				                            $progress_ =  json_decode($value['Progress']);
+				                            $progress =  json_decode($value['Progress']);
 				                            for($i = 0; $i < count($intervention); $i++) {
 				                         ?>		
-				                         		<td><textarea name="intervention_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($intervention[$i]);?></textarea></td>
-										        <td><textarea name="outcome_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($outcome[$i]);?></textarea></td>
-										        <td><textarea name="goal_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($goal[$i]);?></textarea></td>
-										        <td><textarea name="progress_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($progress[$i]);?></textarea></td> 
-										         </tr>
+			                         		<td><textarea name="intervention_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($intervention[$i]);?></textarea></td>
+									        <td><textarea name="outcome_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($outcome[$i]);?></textarea></td>
+									        <td><textarea name="goal_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($goal[$i]);?></textarea></td>
+									        <td><textarea name="progress_<?php echo text($value['issue'] + 1); ?>[]"><?php echo text($progress[$i]);?></textarea></td> 
+									         </tr>
 										<?php
 										}		                            
 				                        ?>
@@ -114,6 +114,39 @@ $returnurl = 'encounter_top.php';
 			    <?php
 			    		 $j = $j + 1;
 				    		}
+			        	} else {
+			        		?>
+			        			<tr id="row_1">
+								  	<td>
+								  		<mark>1</mark>
+								  		<a href="#" ><span style="color: #337ab7" onclick="addIntervention(1)" class="glyphicon glyphicon-plus-sign" title="Add Interventions"></span> </a>
+								  		<a href="#"><span style="color: red" onclick="deactivateIssue(1)" class="glyphicon glyphicon-ban-circle" title="Deactivate Issue"></span> </a> 
+								  	</td>
+								  	<td><input type="text" name="issue[]" placeholder="key issue"></td>
+								  	<input type="hidden" class="status_1" name="status[]" value="1">
+								  	<input type="hidden"  name="count[]" value="1">
+								  	<td>
+								      <table>
+								      	<thead>
+								      		<tr>
+											   <th>Intervention</th>
+											   <th>Outcome</th> 
+											   <th>Goal</th>
+											   <th>Progress</th>
+											</tr>
+								      	</thead>
+								      	<tbody class="intervention_1">
+								      		<tr>
+									          <td><textarea name="intervention_1[]"></textarea></td>
+									          <td><textarea name="outcome_1[]"></textarea></td>
+									          <td><textarea name="goal_1[]"></textarea></td>
+									          <td><textarea name="progress_1[]"></textarea></td>  
+									        </tr>
+								      	</tbody>   
+								      </table>
+								    </td>    
+							  </tr>
+			        		<?php
 			        	}
 				?>
 				</tbody>
@@ -126,7 +159,6 @@ $returnurl = 'encounter_top.php';
 
 		<script type="text/javascript">
 		var count = $('#num').val();
-		console.log(count); 
 		function addIntervention(currentIssueNumber ) {
 			let intervention = createInterventionHtml(currentIssueNumber);
 			$(`.intervention_${currentIssueNumber}`).prepend(intervention);
@@ -180,22 +212,23 @@ $returnurl = 'encounter_top.php';
 
 		function createInterventionHtml(issue_number){
 			return `<tr>
-					    <td><textarea name="intervention_${count}[]"></textarea></td>
-					    <td><textarea name="outcome_${count}[]"></textarea></td>
-					    <td><textarea name="goal_${count}[]"></textarea></td>
-					    <td><textarea name="progress_${count}[]"></textarea></td>  
+					    <td><textarea name="intervention_${issue_number}[]"></textarea></td>
+					    <td><textarea name="outcome_${issue_number}[]"></textarea></td>
+					    <td><textarea name="goal_${issue_number}[]"></textarea></td>
+					    <td><textarea name="progress_${issue_number}[]"></textarea></td>  
 				    </tr>
 				 `
 		}
 
 		function beforeSubmit() {
-			$(`textarea[name='intervention_1[]']`)
-              					.map(function(){ console.log($(this).val());return $(this);});
 			var intervention = new Array();
 			var outcome = new Array();
 			var goal = new Array();
 			var progress = new Array();
 			for (var i = 1; i <= count; i++){
+				console.log('count');
+				console.log(count);
+
 				let int = $(`textarea[name='intervention_${i}[]']`)
               					.map(function(){return $(this).val();}).get();
               	intervention.push(JSON.stringify(int));
@@ -212,16 +245,21 @@ $returnurl = 'encounter_top.php';
               					.map(function(){return $(this).val();}).get();
               	progress.push(JSON.stringify(prog));
 
+              	console.log(JSON.stringify(int));
+				console.log(JSON.stringify(out));
+				console.log(JSON.stringify(gol));
+				console.log(JSON.stringify(prog));
+
 			}
 
 			objectIntervention = {"intervention": intervention};
 			objectOutcome = {"outcome": outcome};
 			objectGoal = {"goal": goal};
 			objectProgress = {"progress": progress};
-			console.log(JSON.stringify(objectIntervention));
-			console.log(JSON.stringify(objectOutcome));
-			console.log(JSON.stringify(objectGoal));
-			console.log(JSON.stringify(objectProgress));
+			// console.log(JSON.stringify(objectIntervention));
+			// console.log(JSON.stringify(objectOutcome));
+			// console.log(JSON.stringify(objectGoal));
+			// console.log(JSON.stringify(objectProgress));
 
 
 
@@ -230,6 +268,11 @@ $returnurl = 'encounter_top.php';
             $('textarea[name="Outcome"]').val(JSON.stringify(objectOutcome));
             $('textarea[name="Goal"]').val(JSON.stringify(objectGoal));
             $('textarea[name="Progress"]').val(JSON.stringify(objectProgress));
+
+            console.log($('textarea[name="Interventions"]').val());
+            console.log($('textarea[name="Outcome"]').val());
+            console.log($('textarea[name="Goal"]').val());
+            console.log($('textarea[name="Progress"]').val());
 
 		}
 	</script>

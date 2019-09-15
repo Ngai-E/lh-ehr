@@ -146,10 +146,10 @@ $returnurl = 'encounter_top.php';
 
 		function createInterventionHtml(issue_number){
 			return `<tr>
-					    <td><textarea name="intervention_${count}[]"></textarea></td>
-					    <td><textarea name="outcome_${count}[]"></textarea></td>
-					    <td><textarea name="goal_${count}[]"></textarea></td>
-					    <td><textarea name="progress_${count}[]"></textarea></td>  
+					    <td><textarea name="intervention_${issue_number}[]"></textarea></td>
+					    <td><textarea name="outcome_${issue_number}[]"></textarea></td>
+					    <td><textarea name="goal_${issue_number}[]"></textarea></td>
+					    <td><textarea name="progress_${issue_number}[]"></textarea></td>  
 				    </tr>
 				 `
 		}
