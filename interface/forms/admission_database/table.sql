@@ -1,52 +1,65 @@
 CREATE TABLE IF NOT EXISTS `form_admission_database` (
-  `id` bigint(20) NOT NULL ,
-  `date` DATE DEFAULT NULL,
-  `pid` bigint(20) DEFAULT NULL,
-  `encounter` varchar(255) DEFAULT NULL,
-  `user` varchar(255) DEFAULT NULL,
-  `groupname` varchar(255) DEFAULT NULL,
-  `authorized` tinyint(4) DEFAULT NULL,
-  `activity` tinyint(4) DEFAULT NULL,
-  `Transfusion_policy_reviewed` tinyint(1) DEFAULT NULL,
-  `blood_product` varchar(50) DEFAULT NULL,
-  `current consent signed` tinyint(1) DEFAULT NULL,
-  `verfiy blood type with type and cross` tinyint(1) DEFAULT NULL,
-  `patient blood type` text,
-  `premed given if ordered?` tinyint(1) DEFAULT NULL,
-  `Tempdot white if applicable` tinyint(1) DEFAULT NULL,
-  `compare blood product with provider order` tinyint(1) DEFAULT NULL,
-  `verify compatibility` tinyint(1) DEFAULT NULL,
-  `verify volume with order` tinyint(1) DEFAULT NULL,
-  `verify special requirements match` tinyint(1) DEFAULT NULL,
-  `issue time confirmed` tinyint(1) DEFAULT NULL
-  `issue date confirmed` tinyint(1) DEFAULT NULL,
-  `Indications for transfusion` text,
-  `Patient identifiers confirmed`  tinyint(1) DEFAULT NULL,
-  `compare tag info to requisition` tinyint(1) DEFAULT NULL,
-  `compare bag to requsition` tinyint(1) DEFAULT NULL
-  `dual verification of blood completed` tinyint(1) DEFAULT NULL,
-  `2nd verifiers name or initials` varchar(50),
-  `verification done at the bedside` tinyint(1) DEFAULT NULL,
-  `time transfusion started` varchar(20),
-  `Temperature` varchar(20),
-  `Pulse` varchar(10),
-  `Respirations` varchar(10),
-  `Blood Pressure` varchar(10),
-  `SpO2` 				varchar(10),
-  `Respiratory pattern` varchar(255),
-  `Retractions`  tinyint(1) DEFAULT NULL,
-  `cough` varchar(255),
-  `appearance` varchar(255) DEFAULT NULL,
-  `Breath sounds RUL` varchar(255) DEFAULT NULL,
-  `Breath sounds RML` varchar(255) DEFAULT NULL,
-  `Breath sounds RLL` varchar(255) DEFAULT NULL,
-  `Breath sounds LUL` varchar(255) DEFAULT NULL,
-  `Breath sounds LLL` varchar(255) DEFAULT NULL,
-  `Rash location` varchar(255) DEFAULT NULL,
-  `Rash description` varchar(255) DEFAULT NULL,
-  `Transfusion stop time` DATE DEFAULT NULL,
-  `Transfusion reason`  varchar(255) DEFAULT NULL,
-  `1 hour post transfusion vitals completed` tinyint(1) DEFAULT NULL,
-  `Post discharge instructions given` tinyint(1) DEFAULT NULL,
-  `Suspected transfusion reaction (y/n)` varchar(255) DEFAULT NULL,
-) ENGINE=InnoDB;
+`id`bigint(20) NOT NULL_
+`date` DATE DEFAULT NULL,
+`pid` bigint(20) DEFAULT NULL,
+`encounter` varchar(255) DEFAULT NULL,
+`user` varchar(255) DEFAULT NULL,
+`groupname` varchar(255) DEFAULT NULL,
+`authorized` tinyint(4) DEFAULT NULL,
+`activity` tinyint(4) DEFAULT NULL,
+`Arrived_by`
+`Accompanied_by`
+`Has_the_patient_or_anyone_accompanying_the_patient_traveled_today`
+`Which_country`
+`Have_you_had___rash,_cold,_fever,_n/v/d_symptoms____in_the_last__days?`
+`Exposures_to_chicken_pox,_measles,_mumps,_strep,_hepatitis,_or_tb_in_the_last__weeks?`
+`Diagnosis`
+`Nutrition_source`
+`food_allergy_Rxn`
+`appetite`
+`recent_wt_loss___how_much____`
+`Pt_takes_liquids_from`
+`nipple_type`
+`feeding_tube_type/size`
+`formula_type`
+`feeding_schedule`
+`pt_eats_table_food?`
+`pt_feeds_self?`
+`Type`
+`Time`
+`Amount`
+`Up_to_date?`
+`Flu_vaccine_completed_this_season?`
+`Name`
+`Dose`
+`Frequency`
+`Patient_developmentally_delayed?`
+`Movement/mobility_problems?`
+`Learning_problems?`
+`speech_problems?`
+`Hearing_problems?`
+`Vision_problems?`
+`Behavior_problems?`
+`Assistive_devices`
+`dental_appliances?`
+`Does_the_patient_have_psych_issues?`
+`Do_you_or_anyone_who_lives_with_smoke`
+`Would_you_like_information_about_stopping?`
+`What_are_nonmedicinal_comfort`
+`suffer_cronic_pain`
+`Location`
+`Current_pain_level`
+`Who_lives_at_home?`
+`security`
+`emergency_number`
+`need_excuse`
+`Potential_barriers_to_discharge`
+`issues_with_alcoho`
+`Requests_prior_to_discharge`
+`Referral_needs`
+`Pt_request_spiritual_care`
+`Pt_concerns_about_discharge`
+`agencies_or_specialists`
+`Does_the_patient_have_an_advanced`
+`Would_the_patient_like_information`
+)_ENGINE=InnoDB;
