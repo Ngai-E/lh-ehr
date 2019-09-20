@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `form_admission_database` (
-`id`bigint(20) NOT NULL_
+`id`              bigint(20) NOT NULL_
 `date` DATE DEFAULT NULL,
 `pid` bigint(20) DEFAULT NULL,
 `encounter` varchar(255) DEFAULT NULL,
@@ -9,10 +9,10 @@ CREATE TABLE IF NOT EXISTS `form_admission_database` (
 `activity` tinyint(4) DEFAULT NULL,
 `Arrived_by`
 `Accompanied_by`
-`Has_the_patient_or_anyone_accompanying_the_patient_traveled_today`
+`companion_traveled_today`
 `Which_country`
-`Have_you_had___rash,_cold,_fever,_n/v/d_symptoms____in_the_last__days?`
-`Exposures_to_chicken_pox,_measles,_mumps,_strep,_hepatitis,_or_tb_in_the_last__weeks?`
+`recent_rash_symptoms`
+`Exposures_to_chicken_pox`
 `Diagnosis`
 `Nutrition_source`
 `food_allergy_Rxn`
