@@ -1,65 +1,65 @@
 CREATE TABLE IF NOT EXISTS `form_admission_database` (
-`id`              bigint(20) NOT NULL_
-`date` DATE DEFAULT NULL,
-`pid` bigint(20) DEFAULT NULL,
-`encounter` varchar(255) DEFAULT NULL,
-`user` varchar(255) DEFAULT NULL,
-`groupname` varchar(255) DEFAULT NULL,
-`authorized` tinyint(4) DEFAULT NULL,
-`activity` tinyint(4) DEFAULT NULL,
-`Arrived_by`
-`Accompanied_by`
-`companion_traveled_today`
-`Which_country`
-`recent_rash_symptoms`
-`Exposures_to_chicken_pox`
-`Diagnosis`
-`Nutrition_source`
-`food_allergy_Rxn`
-`appetite`
-`recent_wt_loss___how_much____`
-`Pt_takes_liquids_from`
-`nipple_type`
-`feeding_tube_type/size`
-`formula_type`
-`feeding_schedule`
-`pt_eats_table_food?`
-`pt_feeds_self?`
-`Type`
-`Time`
-`Amount`
-`Up_to_date?`
-`Flu_vaccine_completed_this_season?`
-`Name`
-`Dose`
-`Frequency`
-`Patient_developmentally_delayed?`
-`Movement/mobility_problems?`
-`Learning_problems?`
-`speech_problems?`
-`Hearing_problems?`
-`Vision_problems?`
-`Behavior_problems?`
-`Assistive_devices`
-`dental_appliances?`
-`Does_the_patient_have_psych_issues?`
-`Do_you_or_anyone_who_lives_with_smoke`
-`Would_you_like_information_about_stopping?`
-`What_are_nonmedicinal_comfort`
-`suffer_cronic_pain`
-`Location`
-`Current_pain_level`
-`Who_lives_at_home?`
-`security`
-`emergency_number`
-`need_excuse`
-`Potential_barriers_to_discharge`
-`issues_with_alcoho`
-`Requests_prior_to_discharge`
-`Referral_needs`
-`Pt_request_spiritual_care`
-`Pt_concerns_about_discharge`
-`agencies_or_specialists`
-`Does_the_patient_have_an_advanced`
-`Would_the_patient_like_information`
-)_ENGINE=InnoDB;
+`id`                                bigint(20) NOT NULL,
+`date`                              DATE                      DEFAULT NULL,
+`pid`                               bigint(20)                DEFAULT NULL,
+`encounter`                         varchar(255)              DEFAULT NULL,
+`user`                              varchar(255)              DEFAULT NULL,
+`groupname`                         varchar(255)              DEFAULT NULL,
+`authorized`                        tinyint(4)                DEFAULT NULL,
+`activity`                          tinyint(4)                DEFAULT NULL,
+`Arrived_by`                        varchar(255)              DEFAULT NULL,
+`Accompanied_by`                    varchar(255)              DEFAULT NULL,
+`companion_traveled_today`          tinyint(1)                DEFAULT NULL,
+`Which_country`                     varchar(255)              DEFAULT NULL,
+`recent_rash_symptoms`              text                      DEFAULT NULL,
+`Exposures_to_chicken_pox`          text                      DEFAULT NULL,
+`Diagnosis`                         text                      DEFAULT NULL,
+`Nutrition_source`                  varchar(255)              DEFAULT NULL,
+`food_allergy_Rxn`                  text                      DEFAULT NULL,
+`appetite`                          tinyint(1)                DEFAULT NULL,
+`recent_wt_loss___how_much____`     tinyint(1)                DEFAULT NULL,
+`Pt_takes_liquids_from`             varchar(255)              DEFAULT NULL,
+`nipple_type`                       varchar(255)              DEFAULT NULL,
+`feeding_tube_type/size`            varchar(255)              DEFAULT NULL,
+`formula_type`                      varchar(255)              DEFAULT NULL,
+`feeding_schedule`                  text                      DEFAULT NULL,
+`pt_eats_table_food?`               tinyint(1)                DEFAULT NULL,
+`pt_feeds_self?`                    tinyint(1)                DEFAULT NULL,
+`Type`                              varchar(255)              DEFAULT NULL,
+`Time`                              varchar(255)              DEFAULT NULL,
+`Amount`                            varchar(255)              DEFAULT NULL,
+`Up_to_date?`                       tinyint(1)                DEFAULT NULL,
+`Flu_vaccine_completed_this_season?` tinyint(1)                DEFAULT NULL,
+`Name`                              varchar(255)              DEFAULT NULL,
+`Dose`                              varchar(255)              DEFAULT NULL,
+`Frequency`                         varchar(255)              DEFAULT NULL,
+`Patient_developmentally_delayed?`  varchar(255)              DEFAULT NULL,
+`Movement/mobility_problems?`       varchar(255)              DEFAULT NULL,
+`Learning_problems?`                varchar(255)              DEFAULT NULL,
+`speech_problems?`                  varchar(255)              DEFAULT NULL,
+`Hearing_problems?`                 varchar(255)              DEFAULT NULL,
+`Vision_problems?`                  varchar(255)              DEFAULT NULL,
+`Behavior_problems?`                varchar(255)              DEFAULT NULL,
+`Assistive_devices`                 varchar(255)              DEFAULT NULL,
+`dental_appliances?`                varchar(255)              DEFAULT NULL,
+`Does_the_patient_have_psych_issues?`         varchar(255)              DEFAULT NULL,
+`Do_you_or_anyone_who_lives_with_smoke`       tinyint(1)                DEFAULT NULL,
+`Would_you_like_information_about_stopping?`  varchar(255)              DEFAULT NULL,
+`What_are_nonmedicinal_comfort`               varchar(255)              DEFAULT NULL,
+`suffer_cronic_pain`                          text                      DEFAULT NULL,
+`Location`                                    varchar(255)              DEFAULT NULL,
+`Current_pain_level`                          tinyint(2)                DEFAULT NULL,
+`Who_lives_at_home?`                          text                      DEFAULT NULL,
+`security`                                    text                      DEFAULT NULL,         
+`emergency_number`                            varchar(255)              DEFAULT NULL,
+`need_excuse`                                 varchar(255)              DEFAULT NULL,
+`Potential_barriers_to_discharge`             varchar(255)              DEFAULT NULL,
+`issues_with_alcoho`                          varchar(255)              DEFAULT NULL,
+`Requests_prior_to_discharge`                 text                      DEFAULT NULL,
+`Referral_needs`                              text                      DEFAULT NULL,
+`Pt_request_spiritual_care`                   varchar(255)              DEFAULT NULL,
+`Pt_concerns_about_discharge`                 text                      DEFAULT NULL,
+`agencies_or_specialists`                     text                      DEFAULT NULL,
+`Does_the_patient_have_an_advanced`           tinyint(1)                DEFAULT NULL,
+`Would_the_patient_like_information`          varchar(255)              DEFAULT NULL
+) ENGINE=InnoDB;

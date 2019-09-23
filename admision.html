@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+      .flex-item {
+          flex: 1;
+          width: 50%;
+      }
+      .flex-div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .flex-radio {
+          display: flex;
+      }
+      .flex-column {
+          display: flex;
+          flex-direction: column;
+      }
+  </style>
+</head>
+<body>
+    <div>
+        <form action="/">
+            <div class="flex-div">
+                <div class="flex-item flex-column">
+                    <h1>Admit info</h1>
+                    <div>
+                        <label for="Arrived_by">Arrived by</label>
+                        <textarea name="Arrived_by" id="Arrived_by"></textarea>
+                    </div>
+                    <div>
+                        <label for="Accompanied_by">Accompanied by</label>
+                        <textarea name="Accompanied_by" id="Accompanied_by"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item flex-column">
+                    <h1>Travel Screen</h1>
+                    <div class="flex-column">
+                        <label for="companion_traveled_today">Has the patient or anyone accompanying the patient traveled today?</label>
+                        <div class="flex-radio">
+                            <input type="radio" name="companion_traveled_today" id="companion_traveled_today" value="yes" />
+                            <input type="radio" name="companion_traveled_today" id="companion_traveled_today" value="no" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Which_country">Which country</label>
+                        <textarea name="Which_country" id="Which_country"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h1>Symptoms/Exposures</h1>
+                    <div class="flex-column">
+                        <label for="recent_rash_symptoms">Have you had (rash, cold, fever, n/v/d symptoms) in the last 7 days?</label>
+                        <div class="flex-radio">
+                            <input type="radio" name="recent_rash_symptoms" id="recent_rash_symptoms" value="yes" />
+                            <input type="radio" name="recent_rash_symptoms" id="recent_rash_symptoms" value="no" />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Exposures_to_chicken_pox">Exposures to chicken pox, measles, mumps, strep, hepatitis, or tb in the last 3 weeks?</label>
+                        <textarea name="Exposures_to_chicken_pox" id="Exposures_to_chicken_pox"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h1>Nutrition info</h1>
+                    <div>
+                        <label for="Diagnosis">Diagnosis</label>
+                        <textarea name="Diagnosis" id="Diagnosis"></textarea>
+                    </div>
+                    <div>
+                        <label for="Nutrition_source">Nutrition source</label>
+                        <textarea name="Nutrition_source" id="Nutrition_source"></textarea>
+                    </div>
+                    <div>
+                        <label for="food_allergy_Rxn">food allergy Rxn</label>
+                        <textarea name="food_allergy_Rxn" id="food_allergy_Rxn"></textarea>
+                    </div>
+                    <div class="flex-column">
+                        <label for="appetite">appetite</label>
+                        <div class="flex-radio">
+                            <input type="radio" name="appetite" id="appetite" value="yes" />
+                            <input type="radio" name="appetite" id="appetite" value="no" />
+                        </div>
+                    </div>
+                    <div class="flex-column">
+                        <label for="recent_wt_loss___how_much____">recent wt loss (how much)</label>
+                        <div class="flex-radio">
+                            <input type="radio" name="recent_wt_loss___how_much____" id="recent_wt_loss___how_much____" value="yes" />
+                            <input type="radio" name="recent_wt_loss___how_much____" id="recent_wt_loss___how_much____" value="no" />
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h1>Feeding info</h1>
+                    <div>
+                        <label for="Pt_takes_liquids_from">Pt takes liquids from</label>
+                        <textarea name="Pt_takes_liquids_from" id="Pt_takes_liquids_from"></textarea>
+                    </div>
+                    <div>
+                        <label for="nipple_type">nipple type</label>
+                        <textarea name="nipple_type" id="nipple_type"></textarea>
+                    </div>
+                    <div>
+                        <label for="feeding_tube_type/size">feeding tube type/size</label>
+                        <textarea name="feeding_tube_type/size" id="feeding_tube_type/size"></textarea>
+                    </div>
+                    <div>
+                        <label for="formula_type">formula type</label>
+                        <textarea name="formula_type" id="formula_type"></textarea>
+                    </div>
+                    <div>
+                        <label for="feeding_schedule">feeding schedule</label>
+                        <textarea name="feeding_schedule" id="feeding_schedule"></textarea>
+                    </div>
+                    <div class="flex-column">
+                        <label for="pt_eats_table_food?">pt eats table food?</label>
+                        <div class="flex-radio">
+                            <input type="radio" name="pt_eats_table_food?" id="pt_eats_table_food?" value="yes" />
+                            <input type="radio" name="pt_eats_table_food?" id="pt_eats_table_food?" value="no" />
+                        </div>
+                    </div>
+                    <div class="flex-column">
+                        <label for="pt_feeds_self?">pt feeds self?</label>
+                        <div class="flex-radio">
+                            <input type="radio" name="pt_feeds_self?" id="pt_feeds_self?" value="yes" />
+                            <input type="radio" name="pt_feeds_self?" id="pt_feeds_self?" value="no" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="flex-item">
+                    <h1>Recent PO intake</h1>
+                    <div>
+                        <label for="Type">Type</label>
+                        <textarea name="Type" id="Type"></textarea>
+                    </div>
+                    <div>
+                        <label for="Time">Time</label>
+                        <textarea name="Time" id="Time"></textarea>
+                    </div>
+                    <div>
+                        <label for="Amount">Amount</label>
+                        <textarea name="Amount" id="Amount"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h1>Immunizations</h1>
+                    <div lass="flex-column">
+                        <label for="Up_to_date?">Up to date?</label>
+                        <div class="flex-radio">
+                            <input type="radio" name="Up_to_date?" id="Up_to_date?" value="yes" />
+                            <input type="radio" name="Up_to_date?" id="Up_to_date?" value="no" />
+                        </div>
+                    </div>
+                    <div lass="flex-column">
+                        <label for="Flu_vaccine_completed_this_season">Flu vaccine completed this season?</label>
+                        <div class="flex-radio">
+                            <input type="radio" name="Flu_vaccine_completed_this_season?" id="Flu_vaccine_completed_this_season?" value="yes" />
+                            <input type="radio" name="Flu_vaccine_completed_this_season?" id="Flu_vaccine_completed_this_season?" value="no" />
+                        </div>
+                    </div>  
+                </div>
+                <div class="flex-item"></div>
+                <div class="flex-item"></div>
+                <div class="flex-item"></div>
+                <div class="flex-item"></div>
+                <div class="flex-item"></div>
+                <div class="flex-item"></div>
+                <div class="flex-item"></div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
