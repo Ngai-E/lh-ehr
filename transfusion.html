@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+      .flex-div {
+        /* display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+      }
+      .flex-radio {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+      .grid {
+        display: grid;
+      }
+      .flex-column {
+          display: flex;
+          flex-direction: column;
+      }
+      .flex-radio > span {
+          flex: 1;
+          flex-wrap: nowrap;
+          display: inline-flex;
+          padding: 0.5em;
+      }
+      label {
+          flex: 8;
+      }
+      .flex-item {
+        height: fit-content;
+        border: 1px solid #252121;
+        padding: 12px;
+      }
+      h2 {
+        background: linear-gradient(#c1c1c1, #8787de, #f59031);
+      }
+  </style>
+</head>
+<body>
+    <div>
+        <form action="/">
+            <div class="flex-div">
+                <div class="flex-item flex-column">
+                    <h2>Blood Product Transfusion</h2>
+                    <div class="flex-radio">
+                        <label for="Transfusion_policy_reviewed">Transfusion policy reviewed</label>
+                        <span><input type="radio" name="Transfusion_policy_reviewed" id="Transfusion_policy_reviewed" value="yes" />Yes</span>
+                        <span><input type="radio" name="Transfusion_policy_reviewed" id="Transfusion_policy_reviewed" value="no" />No</span>
+                    </div>
+                    <div class="grid">
+                        <label for="blood_product">blood product</label>
+                        <select name="blood_product" id="blood_product"></select>
+                    </div>
+                    <div class="flex-radio">
+                        <label for="current_consent_signed">current consent signed </label>
+                        <span><input type="radio" name="current_consent_signed" id="current_consent_signed" value="yes" />Yes</span>
+                        <span><input type="radio" name="current_consent_signed" id="current_consent_signed" value="no" />No</span>
+                    </div>
+                    <div class="flex-radio">
+                        <label for="verfiy_blood_type_with_type_and_cross">verfiy blood type with type and cross </label>
+                        <span><input type="radio" name="verfiy_blood_type_with_type_and_cross" id="verfiy_blood_type_with_type_and_cross" value="yes" />Yes</span>
+                        <span><input type="radio" name="verfiy_blood_type_with_type_and_cross" id="verfiy_blood_type_with_type_and_cross" value="no" />No</span>
+                    </div>
+                    <div class="grid">
+                        <label for="patient_blood_type">patient blood type</label>
+                        <textarea class="form-control" name="patient_blood_type" id="patient_blood_type"></textarea>
+                    </div>
+                    <div class="grid">
+                        <label for="premed_given_if_ordered?">premed given if ordered?</label>
+                        <textarea class="form-control" name="premed_given_if_ordered?" id="premed_given_if_ordered?"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item flex-column">
+                    <h2>Travel Screen</h2>
+                    <div class="flex-column">
+                        <div class="flex-radio">
+                            <label for="companion_traveled_today">Has the patient or anyone accompanying the patient traveled today?: </label>
+                            <span><input type="radio" name="companion_traveled_today" id="companion_traveled_today" value="yes" />Yes</span>
+                            <span><input type="radio" name="companion_traveled_today" id="companion_traveled_today" value="no" />No</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Which_country">Which country</label>
+                        <textarea class="form-control" name="Which_country" id="Which_country"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item flex-column">
+                    <h2>Symptoms/Exposures</h2>
+                    <div class="flex-column">
+                        <div class="flex-radio">
+                            <label for="recent_rash_symptoms">Have you had (rash, cold, fever, n/v/d symptoms) in the last 7 days?: </label>
+                            <span><input type="radio" name="recent_rash_symptoms" id="recent_rash_symptoms" value="yes" />Yes</span>
+                            <span><input type="radio" name="recent_rash_symptoms" id="recent_rash_symptoms" value="no" />No</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="Exposures_to_chicken_pox">Exposures to chicken pox, measles, mumps, strep, hepatitis, or tb in the last 3 weeks?</label>
+                        <textarea class="form-control" name="Exposures_to_chicken_pox" id="Exposures_to_chicken_pox"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item flex-column">
+                    <h2>Pretransfusion documentation</h2>
+                    <div>
+                        <label for="Diagnosis">Diagnosis</label>
+                        <textarea class="form-control" name="Diagnosis" id="Diagnosis"></textarea>
+                    </div>
+                    <div>
+                        <label for="Nutrition_source">Nutrition source</label>
+                        <textarea class="form-control" name="Nutrition_source" id="Nutrition_source"></textarea>
+                    </div>
+                    <div>
+                        <label for="food_allergy_Rxn">food allergy Rxn</label>
+                        <textarea class="form-control" name="food_allergy_Rxn" id="food_allergy_Rxn"></textarea>
+                    </div>
+                    <div class="flex-column">
+                        
+                        <div class="flex-radio">
+                            <label for="appetite">appetite: </label>
+                            <span><input type="radio" name="appetite" id="appetite" value="yes" />Yes</span>
+                            <span><input type="radio" name="appetite" id="appetite" value="no" />No</span>
+                        </div>
+                    </div>
+                    <div class="flex-column">  
+                        <div class="flex-radio">
+                            <label for="recent_wt_loss___how_much____">recent wt loss (how much): </label>
+                            <span><input type="radio" name="recent_wt_loss___how_much____" id="recent_wt_loss___how_much____" value="yes" />Yes</span>
+                            <span><input type="radio" name="recent_wt_loss___how_much____" id="recent_wt_loss___how_much____" value="no" />No</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item flex-column">
+                    <h2>Transfusion documentation</h2>
+                    <div>
+                        <label for="Pt_takes_liquids_from">Pt takes liquids from</label>
+                        <textarea class="form-control" name="Pt_takes_liquids_from" id="Pt_takes_liquids_from"></textarea>
+                    </div>
+                    <div>
+                        <label for="nipple_type">nipple type</label>
+                        <textarea class="form-control" name="nipple_type" id="nipple_type"></textarea>
+                    </div>
+                    <div>
+                        <label for="feeding_tube_type/size">feeding tube type/size</label>
+                        <textarea class="form-control" name="feeding_tube_type/size" id="feeding_tube_type/size"></textarea>
+                    </div>
+                    <div>
+                        <label for="formula_type">formula type</label>
+                        <textarea class="form-control" name="formula_type" id="formula_type"></textarea>
+                    </div>
+                    <div>
+                        <label for="feeding_schedule">feeding schedule</label>
+                        <textarea class="form-control" name="feeding_schedule" id="feeding_schedule"></textarea>
+                    </div>
+                    <div class="flex-column">
+                        
+                        <div class="flex-radio">
+                            <label for="pt_eats_table_food?">pt eats table food?: </label>
+                            <span><input type="radio" name="pt_eats_table_food?" id="pt_eats_table_food?" value="yes" />Yes</span>
+                            <span><input type="radio" name="pt_eats_table_food?" id="pt_eats_table_food?" value="no" />No</span>
+                        </div>
+                    </div>
+                    <div class="flex-column">
+                        <div class="flex-radio">
+                            <label for="pt_feeds_self?">pt feeds self?</label>
+                            <span><input type="radio" name="pt_feeds_self?" id="pt_feeds_self?" value="yes" />Yes</span>
+                            <span><input type="radio" name="pt_feeds_self?" id="pt_feeds_self?" value="no" />No</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="flex-item flex-column">
+                    <h2>During transfusion VS documentation</h2>
+                    <div>
+                        <label for="Type">Type</label>
+                        <textarea class="form-control" name="Type" id="Type"></textarea>
+                    </div>
+                    <div>
+                        <label for="Time">Time</label>
+                        <textarea class="form-control" name="Time" id="Time"></textarea>
+                    </div>
+                    <div>
+                        <label for="Amount">Amount</label>
+                        <textarea class="form-control" name="Amount" id="Amount"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h2>Respiratory assessment</h2>
+                    <div lass="flex-column">
+                        <div class="flex-radio">
+                            <label for="Up_to_date?">Up to date?: </label>
+                            <span><input type="radio" name="Up_to_date?" id="Up_to_date?" value="yes" />Yes</span>
+                            <span><input type="radio" name="Up_to_date?" id="Up_to_date?" value="no" />No</span>
+                        </div>
+                    </div>
+                    <div lass="flex-column">
+                        <div class="flex-radio">
+                                <label for="Flu_vaccine_completed_this_season">Flu vaccine completed this season?: </label>
+                            <span><input type="radio" name="Flu_vaccine_completed_this_season?" id="Flu_vaccine_completed_this_season?" value="yes" />Yes</span>
+                            <span><input type="radio" name="Flu_vaccine_completed_this_season?" id="Flu_vaccine_completed_this_season?" value="no" />No</span>
+                        </div>
+                    </div>  
+                </div>
+                <div class="flex-item">  
+                    <h1>Skin Assessment</h1>
+                    <div>
+                        <label for="Name">Name</label>
+                        <textarea name="Name" id="Name"></textarea>
+                    </div>
+                    <div>
+                        <label for="Dose">Dose</label>
+                        <textarea name="Dose" id="Dose"></textarea>
+                    </div>  
+                    <div>
+                        <label for="Frequency">Frequency</label>
+                        <textarea name="Frequency" id="Frequency"></textarea>
+                    </div>  
+                </div>
+                <div class="flex-item">
+                    <h2>Post Transfusion Documentation</h2>
+                    <div>
+                        <label for="Patient_developmentally_delayed?">Patient developmentally delayed?</label>
+                        <textarea name="Patient_developmentally_delayed?" id="Patient_developmentally_delayed?"></textarea>
+                    </div>
+                    <div>
+                        <label for="Movement/mobility_problems?">Movement/mobility problems?</label>
+                        <textarea name="Movement/mobility_problems?" id="Movement/mobility_problems?"></textarea>
+                    </div>  
+                    <div>
+                        <label for="Learning_problems?">Learning problems?</label>
+                        <textarea name="Learning_problems?" id="Learning_problems?"></textarea>
+                    </div> 
+                    <div>
+                        <label for="speech_problems?">speech problems?</label>
+                        <textarea name="speech_problems?" id="speech_problems?"></textarea>
+                    </div> 
+                    <div>
+                        <label for="Hearing_problems">Hearing problems?</label>
+                        <textarea name="Hearing_problems" id="Hearing_problems"></textarea>
+                    </div> 
+                    <div>
+                        <label for="HVision_problems?">Vision problems?</label>
+                        <textarea name="Vision_problems?" id="Vision_problems?"></textarea>
+                    </div> 
+                    <div>
+                        <label for="Behavior_problems?">Behavior problems?</label>
+                        <textarea name="Behavior_problems?" id="Behavior_problems?"></textarea>
+                    </div> 
+                    <div>
+                        <label for="Assistive_devices">Assistive devices</label>
+                        <textarea name="Assistive_devices" id="Assistive_devices"></textarea>
+                    </div> 
+                    <div>
+                        <label for="dental_appliances?">dental appliances?</label>
+                        <textarea name="dental_appliances?" id="dental_appliances?"></textarea>
+                    </div> 
+                </div>
+                <div class="flex-item">
+                    <h1>Psychiatric issues</h1>
+                    <div>
+                        <label for="Does_the_patient_have_psych_issues?">Does the patient have psych issues?</label>
+                        <textarea name="Does_the_patient_have_psych_issues?" id="Does_the_patient_have_psych_issues?"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h1>Smoking/tobacco use</h1>
+                    <div class="flex-radio">
+                        <label for="Do_you_or_anyone_who_lives_with_smoke">Do you or anyone who lives with smoke or use tobacco products?: </label>
+                        <span><input type="radio" name="Do_you_or_anyone_who_lives_with_smoke" id="Do_you_or_anyone_who_lives_with_smoke" value="yes" />Yes</span>
+                        <span><input type="radio" name="Do_you_or_anyone_who_lives_with_smoke" id="Do_you_or_anyone_who_lives_with_smoke" value="no" />No</span>
+                    </div>
+                    <div>
+                        <label for="Would_you_like_information_about_stopping?">Does the patient have psych issues?</label>
+                        <textarea name="Would_you_like_information_about_stopping?" id="Would_you_like_information_about_stopping?"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h1>Comfort measures/Chronic Pain</h1>
+                    <div class="flex-radio">
+                        <label for="What_are_nonmedicinal_comfort">What are nonmedicinal comfort measures that help you with pain?: </label>
+                        <textarea name="What_are_nonmedicinal_comfort" id="What_are_nonmedicinal_comfort"></textarea>
+                    </div>
+                    <div>
+                        <label for="suffer_cronic_pain">Do you suffer from chronic pain?</label>
+                        <textarea name="suffer_cronic_pain" id="suffer_cronic_pain"></textarea>
+                    </div>
+                    <div>
+                        <label for="Location">Location</label>
+                        <textarea name="Location" id="Location"></textarea>
+                    </div>
+                    <div>
+                        <label for="Current_pain_level">Current pain level</label>
+                        <textarea name="Current_pain_level" id="Current_pain_level"></textarea>
+                    </div>
+                </div>
+                <div class="flex-item">
+                    <h1>Social Assessment</h1>
+                    <div class="flex-radio">
+                        <label for="Who_lives_at_home?">Who lives at home?: </label>
+                        <textarea name="Who_lives_at_home?" id="Who_lives_at_home?"></textarea>
+                    </div>
+                    <div>
+                        <label for="security">Do you feel safe in your home?</label>
+                        <textarea name="security" id="security"></textarea>
+                    </div>
+                    <div>
+                        <label for="emergency_number">What is the best number to call?</label>
+                        <textarea name="emergency_number" id="emergency_number"></textarea>
+                    </div>
+                    <div>
+                        <label for="need_excuse">Do you need a work or school excuse?</label>
+                        <textarea name="need_excuse" id="need_excuse"></textarea>
+                    </div> 
+                    <div>
+                        <label for="issues_with_alcoho">Do you or anyone in your home have problems with substances or alcohol?</label>
+                        <textarea name="issues_with_alcoho" id="issues_with_alcoho"></textarea>
+                    </div> 
+                    <div>
+                        <label for="Potential_barriers_to_discharge">Potential barriers to discharge</label>
+                        <textarea name="Potential_barriers_to_discharge" id="Potential_barriers_to_discharge"></textarea>
+                    </div> 
+                </div>
+                <div class="flex-item">
+                    <h1>Requests/Concerns</h1>
+                    <div class="flex-radio">
+                        <label for="Requests_prior_to_discharge">Requests prior to discharge: </label>
+                        <textarea name="Requests_prior_to_discharge" id="Requests_prior_to_discharge"></textarea>
+                    </div>
+                    <div>
+                        <label for="Referral_needs">Referral needs</label>
+                        <textarea name="Referral_needs" id="Referral_needs"></textarea>
+                    </div>
+                    <div>
+                        <label for="Pt_request_spiritual_care">Pt request spiritual care</label>
+                        <textarea name="Pt_request_spiritual_care" id="Pt_request_spiritual_care"></textarea>
+                    </div>
+                    <div>
+                        <label for="Pt_concerns_about_discharge">Pt concerns about discharge</label>
+                        <textarea name="Pt_concerns_about_discharge" id="Pt_concerns_about_discharge"></textarea>
+                    </div> 
+                    <div>
+                        <label for="agencies_or_specialists">agencies or specialists to follow up with?</label>
+                        <textarea name="agencies_or_specialists" id="agencies_or_specialists"></textarea>
+                    </div> 
+                    <div>
+                        <label for="Does_the_patient_have_an_advanced">Does the patient have an advanced directive (if 18+ yrs old)</label>
+                        <textarea name="Does_the_patient_have_an_advanced" id="Does_the_patient_have_an_advanced"></textarea>
+                    </div> 
+                    <div>
+                        <label for="Would_the_patient_like_information">Would the patient like information about advanced directives?</label>
+                        <textarea name="Would_the_patient_like_information" id="Would_the_patient_like_information"></textarea>
+                    </div> 
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
