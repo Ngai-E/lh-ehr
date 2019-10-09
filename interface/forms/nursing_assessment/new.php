@@ -829,7 +829,7 @@ $returnurl = 'encounter_top.php';
 						<div class="form-group">
 					    	<label class="control-label col-sm-4" for="GCS_bestMotor">Best Motor</label>
 					    	<div class="col-sm-6">
-					    		<select id="GCS_bestMotor" name="GCS_bestMotor">
+					    		<select class="form-control" id="GCS_bestMotor" name="GCS_bestMotor">
 					    			<option></option>
 					    			<option>1  spontaneous movement/obeys commands</option>
 					    			<option>2 localizes to pain</option>

@@ -243,34 +243,34 @@ $returnurl = 'encounter_top.php';
 					    	<label class="control-label col-sm-4" for="V_deliveryMethod">O2 Delivery Method</label>
 					    	<div class="col-sm-6">
 					    		<select name="V_deliveryMethod" class="form-control" id="V_deliveryMethod">
-					    		<option></option>
-							    <option>Bagging ETT</option>
-							    <option>Blowby</option>
-							    <option>BPAP Mask</option>
-							    <option>BPAP Nasal</option>
-							    <option>BPAP Prongs</option>
-							    <option>BPAP Vent</option>
-							    <option>CPAP Mask</option>
-							    <option>CPAP Nasal</option>
-							    <option>CPAP Prongs</option>
-							    <option>CPAP Ventilator</option>
-							    <option>Face Tent</option>
-							    <option>HHF</option>
-							    <option>Trach-Vent HME</option>
-							    <option>Hood</option>
-							    <option>Mask, Aerosol</option>
-							    <option>Mask, Low Flow</option>
-							    <option>Mask, partial rebreathing</option>
-							    <option>Mask, simple</option>
-							    <option>Mist, Cool</option>
-							    <option>Mist, Cool- Room Air</option>
-							    <option>Mist, warm</option>
-							    <option>Nasal Cannula</option>
-							    <option>Ocillator</option>
-							    <option>RAM Cannula</option>
-							    <option>Trach Collar</option>
-							    <option>Ventilator</option>
-							    <option>Other(see comment)</option>
+					    		<option ></option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Bagging ETT") echo " SELECTED"; ?>>Bagging ETT</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Blowby") echo " SELECTED"; ?>>Blowby</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="BPAP Mask") echo " SELECTED"; ?>>BPAP Mask</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="BPAP Nasal") echo " SELECTED"; ?>>BPAP Nasal</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="BPAP Prongs") echo " SELECTED"; ?>>BPAP Prongs</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="BPAP Vent") echo " SELECTED"; ?>>BPAP Vent</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="CPAP Mask") echo " SELECTED"; ?>>CPAP Mask</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="CPAP Nasal") echo " SELECTED"; ?>>CPAP Nasal</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="CPAP Prongs") echo " SELECTED"; ?>>CPAP Prongs</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="CPAP Ventilator") echo " SELECTED"; ?>>CPAP Ventilator</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Face Tent") echo " SELECTED"; ?>>Face Tent</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="HHF") echo " SELECTED"; ?>>HHF</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Trach-Vent HME") echo " SELECTED"; ?>>Trach-Vent HME</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Hood") echo " SELECTED"; ?>>Hood</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Mask, Aerosol") echo " SELECTED"; ?>>Mask, Aerosol</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Mask, Low Flow") echo " SELECTED"; ?>>Mask, Low Flow</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Mask, partial rebreathing") echo " SELECTED"; ?>>Mask, partial rebreathing</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Mask, simple") echo " SELECTED"; ?>>Mask, simple</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Mist, Cool") echo " SELECTED"; ?>>Mist, Cool</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Mist, Cool- Room Air") echo " SELECTED"; ?>>Mist, Cool- Room Air</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Mist, warm") echo " SELECTED"; ?>>Mist, warm</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Nasal Cannula") echo " SELECTED"; ?>>Nasal Cannula</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Ocillator") echo " SELECTED"; ?>>Ocillator</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="RAM Cannula") echo " SELECTED"; ?>>RAM Cannula</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Trach Collar") echo " SELECTED"; ?>>Trach Collar</option>
+							    <option <?php if ($obj['V_deliveryMethod']=="Ventilator") echo " SELECTED"; ?>>Ventilator</option>
+							    <option ><?php echo text($obj{"V_deliveryMethod"});?></option>
 							</select>
 					    	</div>
 						</div>
@@ -281,21 +281,21 @@ $returnurl = 'encounter_top.php';
 							</label>
 
 							<div class="col-sm-6">
-								<input type="number" name="V_flowRate" class="form-control" id="V_flowRate">
+								<input type="number" name="V_flowRate" value="<?php echo text($obj{"V_flowRate"});?>" class="form-control" id="V_flowRate">
 							</div>
 						</div>
 
 						<div class="form-group">
 					    	<label class="control-label col-sm-4" for="V_bp">Blood Pressure</label>
 					    	<div class="col-sm-6">
-					    		<textarea class="form-control" id="V_bp" name="V_bp"></textarea>
+					    		<textarea class="form-control" id="V_bp" name="V_bp"><?php echo text($obj{"V_bp"});?></textarea>
 					    	</div>
 						</div>
 
 						<div class="form-group">
 					    	<label class="control-label col-sm-4" for="V_bpMean">BP mean</label>
 					    	<div class="col-sm-6">
-					    		<textarea class="form-control" id="V_bpMean" name="V_bpMean"></textarea>
+					    		<textarea class="form-control" id="V_bpMean" name="V_bpMean"><?php echo text($obj{"V_bpMean"});?></textarea>
 					    	</div>
 						</div>
 
@@ -303,12 +303,11 @@ $returnurl = 'encounter_top.php';
 					    	<label class="control-label col-sm-4" for="V_bpLocation">Bp location</label>
 					    	<div class="col-sm-6">
 					    		<select name="V_bpLocation" class="form-control" id="V_bpLocation">
-						    		<option></option>
-								    <option>RUE</option>
-								    <option>LUE</option>
-								    <option>RLE</option>
-								    <option>LLE</option>
-								    <option>Other (comment)</option>
+									<option ><?php echo text($obj{"V_bpLocation"});?></option>
+								    <option <?php if ($obj['V_bpLocation']=="RUE") echo " SELECTED"; ?>>RUE</option>
+								    <option <?php if ($obj['V_bpLocation']=="LUE") echo " SELECTED"; ?>>LUE</option>
+								    <option <?php if ($obj['V_bpLocation']=="RLE") echo " SELECTED"; ?>>RLE</option>
+								    <option <?php if ($obj['V_bpLocation']=="LLE") echo " SELECTED"; ?>>LLE</option>
 								</select>
 					    	</div>
 						</div>
@@ -317,10 +316,9 @@ $returnurl = 'encounter_top.php';
 					    	<label class="control-label col-sm-4" for="V_bpPosition">Bp patient Position</label>
 					    	<div class="col-sm-6">
 					    		<select name="V_bpPosition" class="form-control" id="V_bpPosition">
-						    		<option></option>
-								    <option>Lying</option>
-								    <option>Standing</option>
-								    <option>Sitting</option>
+								    <option <?php if ($obj['V_bpPosition']=="Lying") echo " SELECTED"; ?>>Lying</option>
+								    <option <?php if ($obj['V_bpPosition']=="Standing") echo " SELECTED"; ?>>Standing</option>
+								    <option <?php if ($obj['V_bpPosition']=="Sitting") echo " SELECTED"; ?>>Sitting</option>
 								</select>
 					    	</div>
 						</div>
@@ -341,13 +339,13 @@ $returnurl = 'encounter_top.php';
 					    	<div class="col-sm-6">
 					    		<select name="ADL_location" class="form-control" id="ADL_location">
 						    		<option></option>
-								    <option>Bed/Crib</option>
-								    <option>Chair</option>
-								    <option>Room</option>
-								    <option>Wheelchair</option>
-								    <option>Out of Room</option>
-								    <option>Out on Pass</option>
-								    <option>Other</option>
+								    <option <?php if ($obj['ADL_location']=="Bed/Crib") echo " SELECTED"; ?>>Bed/Crib</option>
+								    <option <?php if ($obj['ADL_location']=="Chair") echo " SELECTED"; ?>>Chair</option>
+								    <option <?php if ($obj['ADL_location']=="Room") echo " SELECTED"; ?>>Room</option>
+								    <option <?php if ($obj['ADL_location']=="Wheelchair") echo " SELECTED"; ?>>Wheelchair</option>
+								    <option <?php if ($obj['ADL_location']=="Out of Room") echo " SELECTED"; ?>>Out of Room</option>
+								    <option <?php if ($obj['ADL_location']=="Out on Pass") echo " SELECTED"; ?>>Out on Pass</option>
+								    <option <?php if ($obj['ADL_location']=="Other") echo " SELECTED"; ?>>Other</option>
 								</select>
 					    	</div>
 						</div>
@@ -600,7 +598,7 @@ $returnurl = 'encounter_top.php';
 						    			<option>None</option>
 						    			<option>Constipated</option>
 						    			<option>Nausea</option>
-						    			<option>O2 Sats<90%</option>
+						    			<option>O2 Sats 90%</option>
 						    			<option>Oversedation</option>
 						    			<option>Pruritis</option>
 						    			<option>Resp Decreased</option>
@@ -623,7 +621,7 @@ $returnurl = 'encounter_top.php';
 						    			<option>4</option>
 						    			<option>l</option>
 						    		</select>
-						    	</div> pasero_sedation_score
+						    	</div> 
 							</div>
 					</div> <!--  end of panel body -->
 				</div> <!-- end of panel primary -->
