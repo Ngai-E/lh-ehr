@@ -74,11 +74,10 @@ $returnurl = 'encounter_top.php';
 				</div>
 				<div class="panel-body">
 					<div class="radio">
-						<div class="radio"><label><input type="radio" value="0"  checked onchange="onInputChange('behavior', this)" name='pews_behavior'  ><span class="text">
+						<div class="radio"><label><input type="radio" value="0"    onchange="onInputChange('behavior', this)" name='pews_behavior'  ><span class="text">
 							<?php echo xl('0: Playing/ Appropriate OR Sleeping comfortably'); ?></span></label> </div>
 						<div class="radio"><label><input type="radio" value="1" onchange="onInputChange('behavior', this)" name='pews_behavior'  ><span class="text">
-							<?php xl('1: Irritable and consolable
-								','e'); ?>
+							<?php xl('1: Irritable and consolable','e'); ?>
 						</span></label> </div>
 						<div class="radio"><label><input type="radio" value="2" onchange="onInputChange('behavior', this)" name='pews_behavior'  ><span class="text"><?php xl('2: Irritable and NOT consolable','e'); ?></span></label> </div>
 
@@ -93,7 +92,7 @@ $returnurl = 'encounter_top.php';
 					<h3 class="panel-title"><?php xl('PEWS Cardiovascular','e'); ?></h3>
 				</div>
 				<div class="panel-body">
-					<div class="radio"><label><input type="radio" value="0"  checked onchange="onInputChange('cardiacVascular', this)" name='pews_card'  ><span class="text">
+					<div class="radio"><label><input type="radio" value="0"    onchange="onInputChange('cardiacVascular', this)" name='pews_card'  ><span class="text">
 						<?php xl('0: Pink or capillary refill time < 1-2 seconds','e'); ?></span></label> </div>
 					<div class="radio"><label><input type="radio" value="1" onchange="onInputChange('cardiacVascular', this)" name='pews_card'  ><span class="text">
 						<?php xl('1: "Pale <br>OR capillary refill time 3 seconds"','e'); ?>
@@ -110,7 +109,7 @@ $returnurl = 'encounter_top.php';
 					<h3 class="panel-title"><?php xl('PEWS Respiratory','e'); ?></h3>
 				</div>
 				<div class="panel-body">
-					<div class="radio"><label><input type="radio" value="0"  checked onchange="onInputChange('respiratory', this)"  name='pews_resp'  >
+					<div class="radio"><label><input type="radio" value="0"    onchange="onInputChange('respiratory', this)"  name='pews_resp'  >
 						<span class="text">
 							<?php xl('0: "Within normal rate, no retractions, <br>AND SpO2 98- 100% on RA"','e'); ?>						
 						</span></label> 
