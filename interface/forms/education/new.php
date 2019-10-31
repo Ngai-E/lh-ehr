@@ -45,7 +45,7 @@ $returnurl = 'encounter_top.php';
 		</style>
 	</head>
 <body>
-	<div class="container">
+	
 	<form method=post action="<?php echo $rootdir;?>/forms/education/save.php?mode=new" name="my_form" onsubmit="beforeSubmit(); return top.restoreSession()">
 		<div class="row">
 			<div class="col-md-4">
@@ -57,12 +57,19 @@ $returnurl = 'encounter_top.php';
 		<div class="row" style="padding:5px">
 			<div class="add-topic" onclick="addTopic()">Add  a Topic</div>
 		</div>
+		<div class="container-fluid">
 		<div class="row addTopic">
-    		<div class="col-sm-12 col-md-3 col-lg-5 topic">
+    		<div class="col-sm-12 col-md-4 topic">
       			<div >
 					<div class="form-group">
-					<h2><label for="comment" style="font-weight:unset">Topic</label></h2>
+					<h2 class="learner-heading">
+						<label for="comment" style="font-weight:unset">Topic</label>
+						<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+						<mark class="labelTopic_1"></mark>
+					</h2>
 					<textarea class="form-control"></textarea>
+					<input type="hidden" class="status_1" name="status[]" value="1">
+				  	<input type="hidden"  name="count[]" value="1">
 					</div>
 					<div class="learner-heading">
 						<h2 style="margin:unset">Learners</h2>
@@ -75,12 +82,14 @@ $returnurl = 'encounter_top.php';
 								<h4 class="panel-title">
 								<a data-toggle="collapse" data-parent="#accordion" href="#learner_1">
 								Learner 1</a>
+								<mark class="labelLearner"></mark></td>
 							</h4>
-							<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+							<a href="#"><span style="color: red"  onclick="inactivateLearner(this, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 							</div>
 							</div>
 							<div id="learner_1"  class="panel-collapse collapse in">
 							<div class="panel-body">
+								<input hidden="hidden" value="1" name="status_learner_1[]">
 								<div class="form-group" class="learner-heading">
 								<label >Learner:</label>
 								<textarea class="form-control" name="learners_1[]"></textarea>
@@ -113,66 +122,15 @@ $returnurl = 'encounter_top.php';
 
     		</div>
   		</div>
-		<table style="width:100%">
-			<thead>
-				<tr>
-				    <th>Topic #</th>
-				    <th>Education Topic <span><a href="#" ><span title="add topic" onclick="addTopic()" style="color: #337ab7" class="glyphicon glyphicon-plus-sign"></span></a></span></th> 
-				    <th>Learners </th> 
-				    <th>Remarks </th> 
-		 	 	</tr>
-			</thead>
-
-			<tbody class="addTopic">
-				<tr id="row_1">
-				  	<td>
-				  		<mark>1</mark>
-				  		<mark class="labelTopic_1"></mark>
-				  		<a href="#" ><span style="color: #337ab7" onclick="addLearner(1)" class="glyphicon glyphicon-plus-sign" title="Add Learner"></span> </a>
-				  		<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
-				  	</td>
-				  	<td><input type="text" name="topic[]" placeholder="Education topic"></td>
-				  	<input type="hidden" class="status_1" name="status[]" value="1">
-				  	<input type="hidden"  name="count[]" value="1">
-				  	<td>
-				      <table>
-				      	<thead>
-				      		<tr>
-							   <th>Learners</th>
-							   <th>Learner's Readiness for Education</th> 
-							   <th>Method of Education</th>
-							   <th>Response to Eduction</th>
-							   <th>Further interventions Needed</th>
-							</tr>
-				      	</thead>
-				      	<tbody class="learner_1">
-				      		<tr>
-				      		  <td><a href="#"><span style="color: red" onclick="inactivateLearner(this, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate learner"></span> </a> 
-				      		  <input hidden="hidden" value="1" name="status_learner_1[]">
-				      		  <mark class="labelLearner"></mark></td>
-					          <td><textarea name="learners_1[]"></textarea></td>
-					          <td><textarea name="readiness_1[]"></textarea></td>
-					          <td><textarea name="response_1[]"></textarea></td>
-					          <td><textarea name="method_1[]"></textarea></td>  
-					          <td><textarea name="interventions_1[]"></textarea></td>  
-					        </tr>
-				      	</tbody>   
-				      </table>
-				    </td>  
-				    <td><textarea name="remark[]"></textarea></td>  
-			  </tr>
-			</tbody>
-		  
-		</table>
 		<textarea hidden="hidden"   name="learners"></textarea>
 		<textarea hidden="hidden" name="readiness"></textarea>
 		<textarea hidden="hidden" name="response"></textarea>
 		<textarea hidden="hidden"  name="method" ></textarea>
 		<textarea hidden="hidden"  name="interventions" ></textarea>
 		<input name="learner_status" hidden="hidden" />
-
+		</div>
 	</form>
-	</div>
+	
 	<script type="text/javascript">
 		var count = 1; 
 		function addLearner(currentTopicNumber ) {
@@ -198,58 +156,113 @@ $returnurl = 'encounter_top.php';
 		}
 		function newTopicHtml() {
 			count++;
-			return `<tr id="row_${count}">
-					  	<td>
-					  		<mark>${count}</mark>
-					  		<mark class="labelTopic_${count}"></mark>
-					  		<a href="#" ><span style="color: #337ab7" onclick="addLearner(${count})" class="glyphicon glyphicon-plus-sign" title="Add Learners"></span> </a>
-					  		<a href="#"><span style="color: red" onclick="inactivateTopic(${count})" class="glyphicon glyphicon-ban-circle" title="Deactivate Topic"></span> </a> 
-					  	</td>
-					  	<td><input type="text" name="topic[]" placeholder="Education topic"></td>
-					  	<input type="hidden" class="status_${count}" name="status[]" value="1">
-					  	<input type="hidden"  name="count[]" value="${count}">
-					  	<td>
-					      <table>
-					      	<thead>
-					      		<tr>
-								   <th>Learners</th>
-								   <th>Learner's Readiness for Education</th> 
-								   <th>Method of Education</th>
-								   <th>Response to Eduction</th>
-								   <th>Further interventions Needed</th>
-								</tr>
-					      	</thead>
-					      	<tbody class="learner_${count}">
-					      		<tr>
-					      			<td><a href="#"><span style="color: red" onclick="inactivateLearner(this)" class="glyphicon glyphicon-ban-circle" title="inactivate learner"></span> </a> 
-					      			<input  hidden="hidden" value="1" name="status_learner_${count}[]">
-				      		  		<mark class="labelLearner_${count}"></mark></td>
-						          	<td><textarea name="learners_${count}[]"></textarea></td>
-								    <td><textarea name="readiness_${count}[]"></textarea></td>
-								    <td><textarea name="response_${count}[]"></textarea></td>
-								    <td><textarea name="method_${count}[]"></textarea></td>   
-								    <td><textarea name="interventions_${count}[]"></textarea></td>   
-						        </tr>
-					      	</tbody>   
-					      </table>
-					    </td>
-					    <td><textarea name="remark[]"></textarea></td>  
-				  </tr>
-				  `
+			return `
+					<div class="col-sm-12 col-md-3 col-lg-5 topic">
+						<div >
+							<div class="form-group">
+							<h2 class="learner-heading">
+								<label for="comment" style="font-weight:unset">Topic</label>
+								<a href="#"><span style="color: red" onclick="inactivateTopic(${count})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+								<mark class="labelTopic_${count}"></mark>
+							</h2>
+							<textarea class="form-control"></textarea>
+							<input type="hidden" class="status_${count}" name="status[]" value="1">
+				  			<input type="hidden"  name="count[]" value="${count}">
+							</div>
+							<div class="learner-heading">
+								<h2 style="margin:unset">Learners</h2>
+								<div onclick="addLearner(${count})" class="topic" style="padding:5px">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
+							</div>
+							<div class="panel-group scroll-div" id="accordion">
+								<div class="panel panel-default row_${count}">
+									<div class="panel-heading">
+									<div class="learner-heading">
+										<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#learner_${count}">
+										Learner ${count}</a>
+										<mark class="labelLearner"></mark></td>
+									</h4>
+									<a href="#"><span style="color: red"  onclick="inactivateLearner(this, ${count})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+									</div>
+									</div>
+									<div id="learner_${count}"  class="panel-collapse collapse in">
+									<div class="panel-body">
+										<input hidden="hidden" value="1" name="status_learner_${count}[]">
+										<div class="form-group" class="learner-heading">
+										<label >Learner:</label>
+										<textarea class="form-control" name="learners_${count}[]"></textarea>
+										</div>
+										<div class="form-group" class="learner-heading">
+										<label >Learner's Readiness for Education:</label>
+										<textarea class="form-control" name="readiness_${count}[]" ></textarea>
+										</div>
+										<div class="form-group" class="learner-heading">
+										<label >Method of Education:</label>
+										<textarea class="form-control" name="response_${count}[]"></textarea>
+										</div>
+										<div class="form-group" class="learner-heading">
+										<label >Response to Eduction:</label>
+										<textarea class="form-control" name="method_${count}[]"></textarea>
+										</div>
+										<div class="form-group" class="learner-heading">
+										<label>Further interventions Needed:</label>
+										<textarea class="form-control" name="interventions_${count}[]" ></textarea>
+										</div>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+							<h2><label for="remark[]" style="font-weight:unset">Remark</label></h2>
+							<textarea class="form-control" name="remark[]"></textarea>
+							</div>
+						</div>
+
+					</div>
+					`
 		}
 
 		function createLearnerHtml(issue_number){
-			return `<tr>
-						<td><a href="#"><span style="color: red" onclick="inactivateLearner(this)" class="glyphicon glyphicon-ban-circle" title="inactivate learner"></span> </a> 
-						<input  hidden="hidden" value="1" name="status_learner_${issue_number}[]">
-				      	<mark class="labelLearner_${issue_number}"></mark></td>
-			          	<td><textarea name="learners_${issue_number}[]"></textarea></td>
-					    <td><textarea name="readiness_${issue_number}[]"></textarea></td>
-					    <td><textarea name="response_${issue_number}[]"></textarea></td>
-					    <td><textarea name="method_${issue_number}[]"></textarea></td>   
-					    <td><textarea name="interventions_${issue_number}[]"></textarea></td>   
-			        </tr>
-				 `
+			return 	`<div class="panel-group scroll-div" id="accordion">
+						<div class="panel panel-default row_${issue_number}">
+							<div class="panel-heading">
+							<div class="learner-heading">
+								<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#learner_${issue_number}">
+								Learner ${issue_number}</a>
+								<mark class="labelLearner"></mark></td>
+							</h4>
+							<a href="#"><span style="color: red"  onclick="inactivateLearner(this, ${issue_number})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+							</div>
+							</div>
+							<div id="learner_${issue_number}"  class="panel-collapse collapse in">
+							<div class="panel-body">
+								<input hidden="hidden" value="1" name="status_learner_${issue_number}[]">
+								<div class="form-group" class="learner-heading">
+								<label >Learner:</label>
+								<textarea class="form-control" name="learners_${issue_number}[]"></textarea>
+								</div>
+								<div class="form-group" class="learner-heading">
+								<label >Learner's Readiness for Education:</label>
+								<textarea class="form-control" name="readiness_${issue_number}[]" ></textarea>
+								</div>
+								<div class="form-group" class="learner-heading">
+								<label >Method of Education:</label>
+								<textarea class="form-control" name="response_${issue_number}[]"></textarea>
+								</div>
+								<div class="form-group" class="learner-heading">
+								<label >Response to Eduction:</label>
+								<textarea class="form-control" name="method_${issue_number}[]"></textarea>
+								</div>
+								<div class="form-group" class="learner-heading">
+								<label>Further interventions Needed:</label>
+								<textarea class="form-control" name="interventions_${issue_number}[]" ></textarea>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+					`
 		}
 
 		function beforeSubmit() {
