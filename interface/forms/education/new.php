@@ -15,17 +15,28 @@ $returnurl = 'encounter_top.php';
 		<?php call_required_libraries(['bootstrap', 'jquery-min-1-9-1', 'font-awesome']); ?>
 		<link rel="stylesheet" href="<?php echo $css_header;?>" type="text/css">
 		<style>
-			table, th, td {
-			  border: 0px;
-			  border-collapse: collapse;
+			.add-topic {
+				width: 200px;
+				text-align: center;
+				line-height: 50px;
+				background-color: #286090;
+				font-size: x-large;
+				color: white;
+				margin: auto;
 			}
-			th, td {
-			  padding: 5px;
-			  text-align: left;    
+			.topic {
+				box-shadow: 0px 0px 6px 2px;
 			}
-			.col-sm-6 ,.col-md-3{
-				padding-left: 3px;
-				padding-right: 3px;
+			
+			.learner-heading {
+				display: flex;
+				justify-content: space-between;
+				flex-wrap: nowrap;
+				align-items: center;
+			}
+			.scroll-div {
+				overflow-y: scroll;
+				max-height: 700px;
 			}
 			input:focus, textarea:focus, select:focus {
 				border-color: #ca1278 !important;
@@ -34,6 +45,7 @@ $returnurl = 'encounter_top.php';
 		</style>
 	</head>
 <body>
+	<div class="container">
 	<form method=post action="<?php echo $rootdir;?>/forms/education/save.php?mode=new" name="my_form" onsubmit="beforeSubmit(); return top.restoreSession()">
 		<div class="row">
 			<div class="col-md-4">
@@ -42,7 +54,65 @@ $returnurl = 'encounter_top.php';
 				<input type="button" id="dontsave" class="deleter btn btn-danger" value="<?php echo xla('Cancel'); ?>"> &nbsp;
 			</div>
 		</div>
-		
+		<div class="row" style="padding:5px">
+			<div class="add-topic" onclick="addTopic()">Add  a Topic</div>
+		</div>
+		<div class="row addTopic">
+    		<div class="col-sm-12 col-md-3 col-lg-5 topic">
+      			<div >
+					<div class="form-group">
+					<h2><label for="comment" style="font-weight:unset">Topic</label></h2>
+					<textarea class="form-control"></textarea>
+					</div>
+					<div class="learner-heading">
+						<h2 style="margin:unset">Learners</h2>
+						<div onclick="addLearner(1)" class="topic" style="padding:5px">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
+					</div>
+					<div class="panel-group scroll-div" id="accordion">
+						<div class="panel panel-default row_1">
+							<div class="panel-heading">
+							<div class="learner-heading">
+								<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#learner_1">
+								Learner 1</a>
+							</h4>
+							<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+							</div>
+							</div>
+							<div id="learner_1"  class="panel-collapse collapse in">
+							<div class="panel-body">
+								<div class="form-group" class="learner-heading">
+								<label >Learner:</label>
+								<textarea class="form-control" name="learners_1[]"></textarea>
+								</div>
+								<div class="form-group" class="learner-heading">
+								<label >Learner's Readiness for Education:</label>
+								<textarea class="form-control" name="readiness_1[]" ></textarea>
+								</div>
+								<div class="form-group" class="learner-heading">
+								<label >Method of Education:</label>
+								<textarea class="form-control" name="response_1[]"></textarea>
+								</div>
+								<div class="form-group" class="learner-heading">
+								<label >Response to Eduction:</label>
+								<textarea class="form-control" name="method_1[]"></textarea>
+								</div>
+								<div class="form-group" class="learner-heading">
+								<label>Further interventions Needed:</label>
+								<textarea class="form-control" name="interventions_1[]" ></textarea>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+					<h2><label for="remark[]" style="font-weight:unset">Remark</label></h2>
+					<textarea class="form-control" name="remark[]"></textarea>
+					</div>
+      			</div>
+
+    		</div>
+  		</div>
 		<table style="width:100%">
 			<thead>
 				<tr>
@@ -102,7 +172,7 @@ $returnurl = 'encounter_top.php';
 		<input name="learner_status" hidden="hidden" />
 
 	</form>
-
+	</div>
 	<script type="text/javascript">
 		var count = 1; 
 		function addLearner(currentTopicNumber ) {
@@ -231,5 +301,6 @@ $returnurl = 'encounter_top.php';
 
 		}
 	</script>
+
 </body>
 </html>
