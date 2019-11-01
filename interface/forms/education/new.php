@@ -42,6 +42,15 @@ $returnurl = 'encounter_top.php';
 				border-color: #ca1278 !important;
 				border-width: 2px !important;
 			}
+			.add-learner {
+				padding: 5px;
+				cursor: pointer;
+				background: #286090;
+				border-radius: 5px;
+				color: white;
+				font-size: large;
+				margin-bottom: 5px;
+			}
 		</style>
 	</head>
 <body>
@@ -54,7 +63,7 @@ $returnurl = 'encounter_top.php';
 				<input type="button" id="dontsave" class="deleter btn btn-danger" value="<?php echo xla('Cancel'); ?>"> &nbsp;
 			</div>
 		</div>
-		<div class="row" style="padding:5px">
+		<div class="row" style="padding: 20px 0;cursor: pointer">
 			<div class="add-topic" onclick="addTopic()">Add  a Topic</div>
 		</div>
 		<div class="container-fluid">
@@ -67,27 +76,27 @@ $returnurl = 'encounter_top.php';
 						<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 						<mark class="labelTopic_1"></mark>
 					</h2>
-					<textarea class="form-control"></textarea>
+					<textarea class="form-control" name="topic[]"></textarea>
 					<input type="hidden" class="status_1" name="status[]" value="1">
 				  	<input type="hidden"  name="count[]" value="1">
 					</div>
 					<div class="learner-heading">
 						<h2 style="margin:unset">Learners</h2>
-						<div onclick="addLearner(1)" class="topic" style="padding:5px;cursor: pointer;">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
+						<div onclick="addLearner(1)" class="add-learner">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
 					</div>
-					<div class="panel-group scroll-div learner_1" id="accordion1">
+					<div class="panel-group scroll-div issue_1" id="accordion1">
 						<div class="panel panel-default row_1">
 							<div class="panel-heading">
 							<div class="learner-heading">
 								<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion1" href="#learner_1">
-								Learner 1<span class=" glyphicon glyphicon-triangle-bottom"></span></a>
+								<a data-toggle="collapse" data-parent="#accordion1" href="#learner_11">
+								Learner 1</a>
 								<mark class="labelLearner"></mark></td>
 							</h4>
-							<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(this, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+							<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(1, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 							</div>
 							</div>
-							<div id="learner_1"  class="panel-collapse collapse">
+							<div id="learner_11"  class="panel-collapse collapse">
 							<div class="panel-body">
 								<input hidden="hidden" value="1" name="status_learner_1[]">
 								<div class="form-group" class="learner-heading">
@@ -134,8 +143,10 @@ $returnurl = 'encounter_top.php';
 	<script type="text/javascript">
 		var count = 1; 
 		function addLearner(currentTopicNumber ) {
-			let learner = createLearnerHtml(currentTopicNumber);
-			$(`.learner_${currentTopicNumber}`).prepend(learner);
+			const learnerNumber = $(`.issue_${currentTopicNumber}`).children();
+			let learner = createLearnerHtml(currentTopicNumber, learnerNumber.length + 1);
+			$(`.issue_${currentTopicNumber}`).prepend(learner);
+			
 		}
 		
 		function addTopic() {
@@ -147,11 +158,11 @@ $returnurl = 'encounter_top.php';
 			$(`.status_${TopicNumber}`).attr("value", "0");
 			$(`.labelTopic_${TopicNumber}`).html("Topic Completed");
 		}
-		function inactivateLearner(element, TopicNumber) {
-			var learner = $(element).parent().parent().parent();
+		function inactivateLearner(issueNumber, TopicNumber) {
+			var learner = $(`#learner_${issueNumber}${TopicNumber}`);
 			learner.find(`input[name="status_learner_${TopicNumber}[]"]`).attr("value", "0");
 			learner.css("background-color", "#c5c5bc");
-			learner.find(`.labelLearner`).html("Completed ED Topic");
+			learner.parent().find(`.labelLearner`).html("Completed ED Topic");
 			learner.find("textarea").attr("readonly","readonly");
 		}
 		function newTopicHtml() {
@@ -165,27 +176,27 @@ $returnurl = 'encounter_top.php';
 								<a href="#"><span style="color: red" onclick="inactivateTopic(${count})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 								<mark class="labelTopic_${count}"></mark>
 							</h2>
-							<textarea class="form-control"></textarea>
+							<textarea class="form-control" name="topic[]"></textarea>
 							<input type="hidden" class="status_${count}" name="status[]" value="1">
 				  			<input type="hidden"  name="count[]" value="${count}">
 							</div>
 							<div class="learner-heading">
 								<h2 style="margin:unset">Learners</h2>
-								<div onclick="addLearner(${count})" class="topic" style="padding:5px">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
+								<div onclick="addLearner(${count})"  class="add-learner" >Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
 							</div>
-							<div class="panel-group scroll-div learner_${count}" id="accordion">
-								<div class="panel panel-default row_${count}">
+							<div class="panel-group scroll-div issue_${count}" id="accordion${count}">
+								<div class="panel panel-default row_1">
 									<div class="panel-heading">
 									<div class="learner-heading">
 										<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion" href="#learner_${count}">
-										Learner ${count}</a>
+										<a data-toggle="collapse" data-parent="#accordion${count}" href="#learner_${count}1">
+										Learner 1</a>
 										<mark class="labelLearner"></mark></td>
 									</h4>
-									<a href="#"><span style="color: red;font-size: large;"  onclick="inactivateLearner(this, ${count})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+									<a href="#"><span style="color: red;font-size: large;"  onclick="inactivateLearner(${count}, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 									</div>
 									</div>
-									<div id="learner_${count}"  class="panel-collapse collapse">
+									<div id="learner_${count}1"  class="panel-collapse collapse">
 									<div class="panel-body">
 										<input hidden="hidden" value="1" name="status_learner_${count}[]">
 										<div class="form-group" class="learner-heading">
@@ -222,20 +233,20 @@ $returnurl = 'encounter_top.php';
 					`
 		}
 
-		function createLearnerHtml(issue_number){
+		function createLearnerHtml(issue_number, learnerNumber){
 			return 	`
-						<div class="panel panel-default row_${issue_number}">
+						<div class="panel panel-default row_${learnerNumber}">
 							<div class="panel-heading">
 							<div class="learner-heading">
 								<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion${issue_number}" href="#learner_${issue_number}">
-								Learner ${issue_number}</a>
+								<a data-toggle="collapse" data-parent="#accordion${issue_number}" href="#learner_${issue_number}${learnerNumber}">
+								Learner ${learnerNumber}</a>
 								<mark class="labelLearner"></mark></td>
 							</h4>
-							<a href="#"><span style="color: red; font-size: large"  onclick="inactivateLearner(this, ${issue_number})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+							<a href="#"><span style="color: red; font-size: large"  onclick="inactivateLearner(${issue_number}, ${learnerNumber})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 							</div>
 							</div>
-							<div id="learner_${issue_number}"  class="panel-collapse collapse">
+							<div id="learner_${issue_number}${learnerNumber}"  class="panel-collapse collapse">
 							<div class="panel-body">
 								<input hidden="hidden" value="1" name="status_learner_${issue_number}[]">
 								<div class="form-group" class="learner-heading">

@@ -28,8 +28,6 @@ $readiness = json_decode($_POST["readiness"]) -> readiness;
 $response = json_decode($_POST["response"]) -> response;
 $method = json_decode($_POST["method"]) -> method;
 $learners_status = json_decode($_POST["learner_status"]) -> learners_status;
-
-
 if ($id && $id != 0) {
     sqlStatement("DELETE FROM `form_education` WHERE id=? AND pid = ? AND encounter = ?", array($id, $_SESSION["pid"], $_SESSION["encounter"]));
     $newid = $id;
@@ -57,8 +55,6 @@ if (!empty($count)) {
       $learners_status_val = $learners_status[$key];
       $remark_val = $remark[$key];
 
-      print_r( $learners_status_val);
-      print_r( $Interventions_val);
       if( strcmp($topic_val, '') == 0 && strcmp($Interventions_val, '[""]') == 0 && strcmp($learner_val, '[""]') == 0 && strcmp($readiness_val, '[""]') == 0 && strcmp($response_val, '[""]') == 0 && strcmp($method_val, '[""]') == 0 && strcmp($remark_val, '') == 0) {
         continue;
       }
@@ -79,7 +75,6 @@ if (!empty($count)) {
             learners_status= '" . add_escape_custom($learners_status_val) . "',
             remark= '" . add_escape_custom($remark_val) 
              . "'";
-             print_r($sets);
         sqlInsert("INSERT INTO form_education SET $sets");
     endforeach;
 }
