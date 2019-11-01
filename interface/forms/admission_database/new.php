@@ -351,6 +351,8 @@ $returnurl = 'encounter_top.php';
                     </select>
                 </div>
             </div>
+            <h2>Social Assessment</h2>
+            
 		</div>
 		<div>
 			<!-- Save/Cancel buttons -->
