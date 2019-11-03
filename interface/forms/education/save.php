@@ -53,6 +53,7 @@ if (!empty($count)) {
       $response_val = $response[$key] ? $response[$key] : '';
       $method_val = $method[$key] ? $method[$key] : '';
       $learners_status_val = $learners_status[$key];
+      $status_topic_val = $status[$key];
       $remark_val = $remark[$key];
 
       if( strcmp($topic_val, '') == 0 && strcmp($Interventions_val, '[""]') == 0 && strcmp($learner_val, '[""]') == 0 && strcmp($readiness_val, '[""]') == 0 && strcmp($response_val, '[""]') == 0 && strcmp($method_val, '[""]') == 0 && strcmp($remark_val, '') == 0) {
@@ -73,6 +74,7 @@ if (!empty($count)) {
             method= '" . add_escape_custom($method_val) . "',
             learners= '" . add_escape_custom($learner_val) . "',
             learners_status= '" . add_escape_custom($learners_status_val) . "',
+            status= '" . add_escape_custom($status_topic_val) . "',
             remark= '" . add_escape_custom($remark_val) 
              . "'";
         sqlInsert("INSERT INTO form_education SET $sets");

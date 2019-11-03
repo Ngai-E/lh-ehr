@@ -93,7 +93,7 @@ $returnurl = 'encounter_top.php';
 								Learner 1</a>
 								<mark class="labelLearner"></mark></td>
 							</h4>
-							<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(1, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+							<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(1, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Learner"></span> </a> 
 							</div>
 							</div>
 							<div id="learner_11"  class="panel-collapse collapse">
@@ -193,7 +193,7 @@ $returnurl = 'encounter_top.php';
 										Learner 1</a>
 										<mark class="labelLearner"></mark></td>
 									</h4>
-									<a href="#"><span style="color: red;font-size: large;"  onclick="inactivateLearner(${count}, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+									<a href="#"><span style="color: red;font-size: large;"  onclick="inactivateLearner(${count}, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Learner"></span> </a> 
 									</div>
 									</div>
 									<div id="learner_${count}1"  class="panel-collapse collapse">
@@ -243,7 +243,7 @@ $returnurl = 'encounter_top.php';
 								Learner ${learnerNumber}</a>
 								<mark class="labelLearner"></mark></td>
 							</h4>
-							<a href="#"><span style="color: red; font-size: large"  onclick="inactivateLearner(${issue_number}, ${learnerNumber})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+							<a href="#"><span style="color: red; font-size: large"  onclick="inactivateLearner(${issue_number}, ${learnerNumber})" class="glyphicon glyphicon-ban-circle" title="inactivate Learner"></span> </a> 
 							</div>
 							</div>
 							<div id="learner_${issue_number}${learnerNumber}"  class="panel-collapse collapse">

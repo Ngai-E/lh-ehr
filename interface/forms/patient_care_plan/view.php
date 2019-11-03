@@ -60,9 +60,6 @@ $returnurl = 'encounter_top.php';
 				<?php 
 					for ($iter = 0; $row = sqlFetchArray($obj); $iter++){
 							$data[$iter] = $row;
-							// echo "<p>".json_encode($data[0])."</p>";
-							// echo "<p>".json_encode($_GET["id"])."</p>";
-							// echo "<p>".$iter."</p>";
 
 					}	
 			    	if ($data) {

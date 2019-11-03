@@ -13,13 +13,13 @@ function education_report($pid, $encounter, $cols, $id) {
         ?>
         <table style='border-collapse:collapse;border-spacing:0;width: 100%;'>
             <tr>
-                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class=bold><?php echo xlt('Topic'); ?></span></td>
-                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class=bold><?php echo xlt('Learners'); ?></span></td>
-                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class=bold><?php echo xlt('Learner\'s Readiness for Education'); ?></span></td> 
-                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class=bold><?php echo xlt('Method of Education'); ?></span></td> 
-                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class=bold><?php echo xlt('Response to Eduction'); ?></span></td> 
-                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class=bold><?php echo xlt('Further interventions Needed'); ?></span></td> 
-                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class=bold><?php echo xlt('Remarks'); ?></span></td> 
+                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class="bold"><?php echo xlt('Topic'); ?></span></td>
+                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class="bold"><?php echo xlt('Learners'); ?></span></td>
+                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class="bold"><?php echo xlt('Learner\'s Readiness for Education'); ?></span></td> 
+                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class="bold"><?php echo xlt('Method of Education'); ?></span></td> 
+                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class="bold"><?php echo xlt('Response to Eduction'); ?></span></td> 
+                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class="bold"><?php echo xlt('Further interventions Needed'); ?></span></td> 
+                <td align='center' style='border:1px solid #ccc;padding:4px;'><span class="bold"><?php echo xlt('Remarks'); ?></span></td> 
             </tr>
         <?php
         foreach ($data as $key => $value) {

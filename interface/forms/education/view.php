@@ -58,7 +58,7 @@ $returnurl = 'encounter_top.php';
 			include_once("$srcdir/api.inc");
 			$res = sqlStatement("SELECT COUNT(*) as numberOfIssues FROM `form_education` WHERE id=?", array($_GET["id"]));
     		$numberOfIssues = sqlFetchArray($res);
-			$sql = "SELECT * FROM `form_patient_care_plan` WHERE id=? AND pid = ? AND encounter = ?";
+			$sql = "SELECT * FROM `form_education` WHERE id=? AND pid = ? AND encounter = ?";
     		$obj = sqlStatement($sql, array($_GET["id"],$_SESSION["pid"], $_SESSION["encounter"]));
 			if($numberOfIssues["numberOfIssues"]) {
 				$html = "<input type=\"hidden\" id=\"num\" value=" . $numberOfIssues["numberOfIssues"] . " />";
@@ -78,71 +78,166 @@ $returnurl = 'encounter_top.php';
 				<input type="button" id="dontsave" class="deleter btn btn-danger" value="<?php echo xla('Cancel'); ?>"> &nbsp;
 			</div>
 		</div>
-		
+		<div class="row" style="padding: 20px 0;cursor: pointer">
+			<div class="add-topic" onclick="addTopic()">Add  a Topic</div>
+		</div>
 		<div class="container-fluid">
 		<div class="row addTopic">
-    		<div class="col-12 col-md-6 col-lg-4 topic">
-      			<div >
-					<div class="form-group">
-					<h2 class="learner-heading">
-						<label for="comment" style="font-weight:unset">Topic</label>
-						<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
-						<mark class="labelTopic_1"></mark>
-					</h2>
-					<textarea class="form-control" name="topic[]"></textarea>
-					<input type="hidden" class="status_1" name="status[]" value="1">
-				  	<input type="hidden"  name="count[]" value="1">
-					</div>
-					<div class="learner-heading">
-						<h2 style="margin:unset">Learners</h2>
-						<div onclick="addLearner(1)" class="add-learner">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
-					</div>
-					<div class="panel-group scroll-div issue_1" id="accordion1">
-						<div class="panel panel-default row_1">
-							<div class="panel-heading">
+			<?php 
+				for ($iter = 0; $row = sqlFetchArray($obj); $iter++){
+						$data[$iter] = $row;
+						// echo "<p>".json_encode($data[0])."</p>";
+						// echo "<p>".json_encode($_GET["id"])."</p>";
+						// echo "<p>".$iter."</p>";
+
+				}	
+				if ($data) {
+					$j = 1;
+					foreach ($data as $key => $value) {	    		
+			?>
+						<div class="col-12 col-md-6 col-lg-4 topic">
+							<div >
+								<div class="form-group">
+								<h2 class="learner-heading">
+									<label for="comment" style="font-weight:unset">Topic</label>
+									<a href="#"><span style="color: red" onclick="inactivateTopic(<?php echo $j; ?>)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+									<mark <?php echo "class='labelTopic_'".$j;?>><?php if($value['status'] == '0'){ echo "Topic Completed"; }?></mark>
+								</h2>
+								<textarea class="form-control" name="topic[]"></textarea>
+								<input type="hidden" <?php echo "class='status_'".$j;?> name="status[]" value="<?php echo text($value['status']); ?>">
+								<input type="hidden"  name="count[]" value="<?php echo text($j); ?>">
+								</div>
+								<div class="learner-heading">
+									<h2 style="margin:unset">Learners</h2>
+									<div onclick="addLearner(<?php echo $j; ?>)" class="add-learner">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
+								</div>
+								<div  <?php echo "class='panel-group scroll-div issue_'".$j;?> <?php echo "id='accordion'".$j;?> >
+									<?php
+										$Learner =  json_decode($value['learners']);
+										$Readiness =  json_decode($value['readiness']);
+										$Response =  json_decode($value['response']);
+										$Method =  json_decode($value['method']);
+										$Intervention =  json_decode($value['interventions']);
+										$LearnerStatus =  json_decode($value['learners_status']);
+										for($i = 0; $i < count($intervention); $i++) {
+				                    ?>	
+											<div  <?php echo "class='panel panel-default row_'".$i;?>>
+												<div class="panel-heading">
+												<div class="learner-heading">
+													<h4 class="panel-title">
+													<a data-toggle="collapse" data-parent="#accordion1" href="#learner_11">
+													Learner 1</a>
+													<mark class="labelLearner"></mark></td>
+												</h4>
+												<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(1, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Learner"></span> </a> 
+												</div>
+												</div>
+												<div id="learner_11"  class="panel-collapse collapse">
+												<div class="panel-body">
+													<input hidden="hidden" value="1" name="status_learner_1[]">
+													<div class="form-group" class="learner-heading">
+													<label >Learner:</label>
+													<textarea class="form-control" name="learners_1[]"></textarea>
+													</div>
+													<div class="form-group" class="learner-heading">
+													<label >Learner's Readiness for Education:</label>
+													<textarea class="form-control" name="readiness_1[]" ></textarea>
+													</div>
+													<div class="form-group" class="learner-heading">
+													<label >Method of Education:</label>
+													<textarea class="form-control" name="response_1[]"></textarea>
+													</div>
+													<div class="form-group" class="learner-heading">
+													<label >Response to Eduction:</label>
+													<textarea class="form-control" name="method_1[]"></textarea>
+													</div>
+													<div class="form-group" class="learner-heading">
+													<label>Further interventions Needed:</label>
+													<textarea class="form-control" name="interventions_1[]" ></textarea>
+													</div>
+												</div>
+												</div>
+											</div>
+									<?php
+										}		                            
+				                    ?>
+								</div>
+								<div class="form-group">
+								<h2><label for="remark[]" style="font-weight:unset">Remark</label></h2>
+								<textarea class="form-control" name="remark[]"></textarea>
+								</div>
+							</div>
+
+						</div>
+			<?php
+			    		$j = $j + 1;
+					} //close foreach
+				} else {
+			?>
+					<div class="col-12 col-md-6 col-lg-4 topic">
+						<div >
+							<div class="form-group">
+							<h2 class="learner-heading">
+								<label for="comment" style="font-weight:unset">Topic</label>
+								<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+								<mark class="labelTopic_1"></mark>
+							</h2>
+							<textarea class="form-control" name="topic[]"></textarea>
+							<input type="hidden" class="status_1" name="status[]" value="1">
+							<input type="hidden"  name="count[]" value="1">
+							</div>
 							<div class="learner-heading">
-								<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion1" href="#learner_11">
-								Learner 1</a>
-								<mark class="labelLearner"></mark></td>
-							</h4>
-							<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(1, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+								<h2 style="margin:unset">Learners</h2>
+								<div onclick="addLearner(1)" class="add-learner">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
 							</div>
+							<div class="panel-group scroll-div issue_1" id="accordion1">
+								<div class="panel panel-default row_1">
+									<div class="panel-heading">
+									<div class="learner-heading">
+										<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion1" href="#learner_11">
+										Learner 1</a>
+										<mark class="labelLearner"></mark></td>
+									</h4>
+									<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(1, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+									</div>
+									</div>
+									<div id="learner_11"  class="panel-collapse collapse">
+									<div class="panel-body">
+										<input hidden="hidden" value="1" name="status_learner_1[]">
+										<div class="form-group" class="learner-heading">
+										<label >Learner:</label>
+										<textarea class="form-control" name="learners_1[]"></textarea>
+										</div>
+										<div class="form-group" class="learner-heading">
+										<label >Learner's Readiness for Education:</label>
+										<textarea class="form-control" name="readiness_1[]" ></textarea>
+										</div>
+										<div class="form-group" class="learner-heading">
+										<label >Method of Education:</label>
+										<textarea class="form-control" name="response_1[]"></textarea>
+										</div>
+										<div class="form-group" class="learner-heading">
+										<label >Response to Eduction:</label>
+										<textarea class="form-control" name="method_1[]"></textarea>
+										</div>
+										<div class="form-group" class="learner-heading">
+										<label>Further interventions Needed:</label>
+										<textarea class="form-control" name="interventions_1[]" ></textarea>
+										</div>
+									</div>
+									</div>
+								</div>
 							</div>
-							<div id="learner_11"  class="panel-collapse collapse">
-							<div class="panel-body">
-								<input hidden="hidden" value="1" name="status_learner_1[]">
-								<div class="form-group" class="learner-heading">
-								<label >Learner:</label>
-								<textarea class="form-control" name="learners_1[]"></textarea>
-								</div>
-								<div class="form-group" class="learner-heading">
-								<label >Learner's Readiness for Education:</label>
-								<textarea class="form-control" name="readiness_1[]" ></textarea>
-								</div>
-								<div class="form-group" class="learner-heading">
-								<label >Method of Education:</label>
-								<textarea class="form-control" name="response_1[]"></textarea>
-								</div>
-								<div class="form-group" class="learner-heading">
-								<label >Response to Eduction:</label>
-								<textarea class="form-control" name="method_1[]"></textarea>
-								</div>
-								<div class="form-group" class="learner-heading">
-								<label>Further interventions Needed:</label>
-								<textarea class="form-control" name="interventions_1[]" ></textarea>
-								</div>
-							</div>
+							<div class="form-group">
+							<h2><label for="remark[]" style="font-weight:unset">Remark</label></h2>
+							<textarea class="form-control" name="remark[]"></textarea>
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-					<h2><label for="remark[]" style="font-weight:unset">Remark</label></h2>
-					<textarea class="form-control" name="remark[]"></textarea>
-					</div>
-      			</div>
-
-    		</div>
+			<?php
+			        } //close else that is there is no saved topic
+			?>
   		</div>
 		<textarea hidden="hidden"   name="learners"></textarea>
 		<textarea hidden="hidden" name="readiness"></textarea>
@@ -151,17 +246,10 @@ $returnurl = 'encounter_top.php';
 		<textarea hidden="hidden"  name="interventions" ></textarea>
 		<input name="learner_status" hidden="hidden" />
 		</div>
-		<textarea hidden="hidden"   name="learners"></textarea>
-		<textarea hidden="hidden" name="readiness"></textarea>
-		<textarea hidden="hidden" name="response"></textarea>
-		<textarea hidden="hidden"  name="method" ></textarea>
-		<textarea hidden="hidden"  name="interventions" ></textarea>
-		<input name="learner_status" hidden="hidden" />
-
 	</form>
 
 	<script type="text/javascript">
-		var count = 1; 
+		var count = $('#num').val();
 		function addLearner(currentTopicNumber ) {
 			const learnerNumber = $(`.issue_${currentTopicNumber}`).children();
 			let learner = createLearnerHtml(currentTopicNumber, learnerNumber.length + 1);
@@ -344,5 +432,6 @@ $returnurl = 'encounter_top.php';
 
 		}
 	</script>
+
 </body>
 </html>
