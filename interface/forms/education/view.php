@@ -86,10 +86,6 @@ $returnurl = 'encounter_top.php';
 			<?php 
 				for ($iter = 0; $row = sqlFetchArray($obj); $iter++){
 						$data[$iter] = $row;
-						// echo "<p>".json_encode($data[0])."</p>";
-						// echo "<p>".json_encode($_GET["id"])."</p>";
-						// echo "<p>".$iter."</p>";
-
 				}	
 				if ($data) {
 					$j = 1;
@@ -101,17 +97,17 @@ $returnurl = 'encounter_top.php';
 								<h2 class="learner-heading">
 									<label for="comment" style="font-weight:unset">Topic</label>
 									<a href="#"><span style="color: red" onclick="inactivateTopic(<?php echo $j; ?>)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
-									<mark <?php echo "class='labelTopic_'".$j;?>><?php if($value['status'] == '0'){ echo "Topic Completed"; }?></mark>
+									<mark class="labelTopic_<?php echo $j;?>" ><?php if($value['status'] == '0'){ echo "Topic Completed"; }?></mark>
 								</h2>
-								<textarea class="form-control" name="topic[]"></textarea>
-								<input type="hidden" <?php echo "class='status_'".$j;?> name="status[]" value="<?php echo text($value['status']); ?>">
+								<textarea class="form-control" name="topic[]"><?php echo text($value['topic']); ?></textarea>
+								<input type="hidden" class="status_<?php echo $j;?>"  name="status[]" value="<?php echo text($value['status']); ?>">
 								<input type="hidden"  name="count[]" value="<?php echo text($j); ?>">
 								</div>
 								<div class="learner-heading">
 									<h2 style="margin:unset">Learners</h2>
 									<div onclick="addLearner(<?php echo $j; ?>)" class="add-learner">Add Learner<a href="#" ><span style="color: #337ab7"  class="glyphicon glyphicon-plus-sign"></span> </a></div>
 								</div>
-								<div  <?php echo "class='panel-group scroll-div issue_'".$j;?> <?php echo "id='accordion'".$j;?> >
+								<div  class="panel-group scroll-div issue_<?php echo $j;?>" id="accordion<?php echo $j;?>"  >
 									<?php
 										$Learner =  json_decode($value['learners']);
 										$Readiness =  json_decode($value['readiness']);
@@ -119,41 +115,41 @@ $returnurl = 'encounter_top.php';
 										$Method =  json_decode($value['method']);
 										$Intervention =  json_decode($value['interventions']);
 										$LearnerStatus =  json_decode($value['learners_status']);
-										for($i = 0; $i < count($intervention); $i++) {
+										for($i = count($Learner) - 1; $i >= 0; $i--) {
 				                    ?>	
-											<div  <?php echo "class='panel panel-default row_'".$i;?>>
+											<div class="panel panel-default row_<?php echo $i + 1;?>">
 												<div class="panel-heading">
 												<div class="learner-heading">
 													<h4 class="panel-title">
-													<a data-toggle="collapse" data-parent="#accordion1" href="#learner_11">
-													Learner 1</a>
-													<mark class="labelLearner"></mark></td>
+													<a data-toggle="collapse" data-parent="#accordion<?php echo $j; ?>" href="#learner_<?php echo $j . $i + 1; ?>">
+													Learner <?php echo $i + 1; ?></a>
+													<mark class="labelLearner"><?php if($LearnerStatus[$i] == '0'){ echo "Completed ED Topic"; }?></mark></td>
 												</h4>
-												<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(1, 1)" class="glyphicon glyphicon-ban-circle" title="inactivate Learner"></span> </a> 
+												<a href="#"><span style="color: red; font-size: large;"  onclick="inactivateLearner(<?php echo $j; ?>, <?php echo $i + 1; ?>)" class="glyphicon glyphicon-ban-circle" title="inactivate Learner"></span> </a> 
 												</div>
 												</div>
-												<div id="learner_11"  class="panel-collapse collapse">
+												<div id="learner_<?php echo $j . $i + 1; ?>"  class="panel-collapse collapse">
 												<div class="panel-body">
-													<input hidden="hidden" value="1" name="status_learner_1[]">
+													<input hidden="hidden" value="<?php echo text($LearnerStatus[$i]); ?>" name="status_learner_<?php echo $j; ?>[]">
 													<div class="form-group" class="learner-heading">
 													<label >Learner:</label>
-													<textarea class="form-control" name="learners_1[]"></textarea>
+													<textarea class="form-control" name="learners_<?php echo $j; ?>[]"> <?php echo text($Learner[$i]); ?> </textarea>
 													</div>
 													<div class="form-group" class="learner-heading">
 													<label >Learner's Readiness for Education:</label>
-													<textarea class="form-control" name="readiness_1[]" ></textarea>
+													<textarea class="form-control" name="readiness_<?php echo $j; ?>[]" > <?php echo text($Readiness[$i]); ?> </textarea>
 													</div>
 													<div class="form-group" class="learner-heading">
 													<label >Method of Education:</label>
-													<textarea class="form-control" name="response_1[]"></textarea>
+													<textarea class="form-control" name="response_<?php echo $j; ?>[]"> <?php echo text($Response[$i]); ?> </textarea>
 													</div>
 													<div class="form-group" class="learner-heading">
 													<label >Response to Eduction:</label>
-													<textarea class="form-control" name="method_1[]"></textarea>
+													<textarea class="form-control" name="method_<?php echo $j; ?>[]"> <?php echo text($Method[$i]); ?> </textarea>
 													</div>
 													<div class="form-group" class="learner-heading">
 													<label>Further interventions Needed:</label>
-													<textarea class="form-control" name="interventions_1[]" ></textarea>
+													<textarea class="form-control" name="interventions_<?php echo $j; ?>[]" > <?php echo text($Intervention[$i]); ?> </textarea>
 													</div>
 												</div>
 												</div>
@@ -164,7 +160,7 @@ $returnurl = 'encounter_top.php';
 								</div>
 								<div class="form-group">
 								<h2><label for="remark[]" style="font-weight:unset">Remark</label></h2>
-								<textarea class="form-control" name="remark[]"></textarea>
+								<textarea class="form-control" name="remark[]"><?php echo text($value['remark']); ?></textarea>
 								</div>
 							</div>
 

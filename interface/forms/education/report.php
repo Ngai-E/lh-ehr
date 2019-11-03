@@ -26,28 +26,15 @@ function education_report($pid, $encounter, $cols, $id) {
             ?>
             <tr > 
                 <td style='border:1px solid #ccc;padding:4px;'><span class=text><?php echo text($value['topic']); ?></span></td>
-                <td style='border:1px solid #ccc;padding:4px;'>
-                    <ul>
-                        <?php
-                            $list =  json_decode($value['interventions']);
-                            for($i = 0; $i < count($list); $i++) {
-                                if( $list[$i] != null || $list[$i] != '') {
-                                    echo "<li><span class=text>" ;
-                                    echo $list[$i];
-                                    echo  "</span></li>";
-                                }
-                            }
-                        ?>
-                    </ul>
-                </td>
                 <td style='border:1px solid #ccc;padding:4px;'><span class=text>
                     <ul>
                         <?php
                             $list =  json_decode($value['learners']);
                             for($i = 0; $i < count($list); $i++) {
-                                if( $list[$i] != null || $list[$i] != '') {
+                                $list[$i] = trim($list[$i]);
+                                if( $list[$i] !== null && $list !== '' && strlen($list[$i]) > 0) {
                                     echo "<li><span class=text>" ;
-                                    echo $list[$i];
+                                    echo text($list[$i]);
                                     echo  "</span></li>";
                                 }
                             }
@@ -59,9 +46,10 @@ function education_report($pid, $encounter, $cols, $id) {
                         <?php
                             $list =  json_decode($value['readiness']);
                             for($i = 0; $i < count($list); $i++) {
-                                if( $list[$i] != null || $list[$i] != '') {
+                                $list[$i] = trim($list[$i]);
+                                if( $list[$i] !== null && $list !== '' && strlen($list[$i]) > 0) {
                                     echo "<li><span class=text>" ;
-                                    echo $list[$i];
+                                    echo text($list[$i]) ;
                                     echo  "</span></li>";
                                 }
                             }
@@ -73,9 +61,10 @@ function education_report($pid, $encounter, $cols, $id) {
                         <?php
                             $list =  json_decode($value['response']);
                             for($i = 0; $i < count($list); $i++) {
-                                if( $list[$i] != null || $list[$i] != '') {
+                                $list[$i] = trim($list[$i]);
+                                if( $list[$i] !== null && $list !== '' && strlen($list[$i]) > 0) {
                                     echo "<li><span class=text>" ;
-                                    echo $list[$i];
+                                    echo text($list[$i]);
                                     echo  "</span></li>";
                                 }
                             }
@@ -87,9 +76,26 @@ function education_report($pid, $encounter, $cols, $id) {
                         <?php
                             $list =  json_decode($value['method']);
                             for($i = 0; $i < count($list); $i++) {
-                                if( $list[$i] != null || $list[$i] != '') {
+                                $list[$i] = trim($list[$i]);
+                                if( $list[$i] !== null && $list !== '' && strlen($list[$i]) > 0) {
                                     echo "<li><span class=text>" ;
-                                    echo $list[$i];
+                                    echo text($list[$i]);
+                                    echo  "</span></li>";
+                                }
+                            }
+                        ?>
+                    </ul>
+                </td>
+                <td style='border:1px solid #ccc;padding:4px;'>
+                    <ul>
+                        <?php
+                            $list =  json_decode($value['interventions']);
+                            for($i = 0; $i < count($list); $i++) {
+                                $list[$i] = trim($list[$i]);
+                                if( $list[$i] !== null && $list !== '' && strlen($list[$i]) > 0) {
+                                    // print($list[i].trim());
+                                    echo "<li><span class=text>" ;
+                                    echo text($list[$i]);
                                     echo  "</span></li>";
                                 }
                             }

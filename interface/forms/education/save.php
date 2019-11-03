@@ -52,7 +52,7 @@ if (!empty($count)) {
       $readiness_val = $readiness[$key] ? $readiness[$key] : '';
       $response_val = $response[$key] ? $response[$key] : '';
       $method_val = $method[$key] ? $method[$key] : '';
-      $learners_status_val = $learners_status[$key];
+      $learners_status_val = $learners_status[$key] ? $learners_status[$key] : '1';
       $status_topic_val = $status[$key];
       $remark_val = $remark[$key];
 
