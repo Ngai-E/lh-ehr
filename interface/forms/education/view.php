@@ -96,8 +96,8 @@ $returnurl = 'encounter_top.php';
 								<div class="form-group">
 								<h2 class="learner-heading">
 									<label for="comment" style="font-weight:unset">Topic</label>
-									<a href="#"><span style="color: red" onclick="inactivateTopic(<?php echo $j; ?>)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 									<mark class="labelTopic_<?php echo $j;?>" ><?php if($value['status'] == '0'){ echo "Topic Completed"; }?></mark>
+									<a href="#"><span style="color: red" onclick="inactivateTopic(<?php echo $j; ?>)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 	
 								</h2>
 								<textarea class="form-control" name="topic[]"><?php echo text($value['topic']); ?></textarea>
 								<input type="hidden" class="status_<?php echo $j;?>"  name="status[]" value="<?php echo text($value['status']); ?>">
@@ -175,8 +175,9 @@ $returnurl = 'encounter_top.php';
 							<div class="form-group">
 							<h2 class="learner-heading">
 								<label for="comment" style="font-weight:unset">Topic</label>
-								<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 								<mark class="labelTopic_1"></mark>
+								<a href="#"><span style="color: red" onclick="inactivateTopic(1)" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+								
 							</h2>
 							<textarea class="form-control" name="topic[]"></textarea>
 							<input type="hidden" class="status_1" name="status[]" value="1">
@@ -277,8 +278,9 @@ $returnurl = 'encounter_top.php';
 							<div class="form-group">
 							<h2 class="learner-heading">
 								<label for="comment" style="font-weight:unset">Topic</label>
-								<a href="#"><span style="color: red" onclick="inactivateTopic(${count})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
 								<mark class="labelTopic_${count}"></mark>
+								<a href="#"><span style="color: red" onclick="inactivateTopic(${count})" class="glyphicon glyphicon-ban-circle" title="inactivate Topic"></span> </a> 
+								
 							</h2>
 							<textarea class="form-control" name="topic[]"></textarea>
 							<input type="hidden" class="status_${count}" name="status[]" value="1">
